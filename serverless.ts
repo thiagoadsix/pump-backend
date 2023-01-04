@@ -28,6 +28,26 @@ const serverlessConfiguration: AWS = {
           }
         }
       ]
+    },
+    'get-by-body-part': {
+      handler: './src/functions/get-by-body-part.main',
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'exercises/{bodyPart}',
+            request: {
+              parameters: {
+                paths: {
+                  which: {
+                    required: true
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   },
   package: { individually: true },
