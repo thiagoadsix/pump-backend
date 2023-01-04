@@ -3,7 +3,7 @@ import type { AWS } from '@serverless/typescript'
 const serverlessConfiguration: AWS = {
   service: 'pump',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-offline'],
+  plugins: ['serverless-dotenv-plugin', 'serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -13,7 +13,13 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000'
+      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      // eslint-disable-next-line no-template-curly-in-string
+      BASE_URL: '${.env:BASE_URL}',
+      // eslint-disable-next-line no-template-curly-in-string
+      AWS_ACCESS_KEY_ID: '${.env:AWS_ACCESS_KEY_ID}',
+      // eslint-disable-next-line no-template-curly-in-string
+      AWS_SECRET_ACCESS_KEY: '${.env:AWS_SECRET_ACCESS_KEY}'
     }
   },
   // import the function via paths
