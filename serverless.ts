@@ -65,6 +65,18 @@ const serverlessConfiguration: AWS = {
           }
         }
       ]
+    },
+    'get-by-id': {
+      handler: './src/functions/get-by-id.main',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'exercises/{id}'
+          }
+        }
+      ]
     }
   },
   package: { individually: true },

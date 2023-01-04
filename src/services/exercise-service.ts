@@ -120,4 +120,21 @@ export class ExerciseService {
 
     return exercisesObject.filter(exercise => exercise.target === target)
   }
+
+  public async getById (id: string): Promise<GetAllExercisesInterface> {
+    const object = await this.s3.client().getObject({
+      Bucket: 'pump-data/json',
+      Key: 'all-exercises.json'
+    }).promise()
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-base-to-string
+    const exercisesObject: GetAllExercisesInterface[] = JSON.parse(object.Body!.toString('utf-8'))
+
+    const exercise = exercisesObject.find(exercise => exercise.id === id)
+
+    if (exercise == null) {
+      throw new Error('Exercise not found.')
+    }
+
+    return exercise
+  }
 }
