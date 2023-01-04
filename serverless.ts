@@ -20,6 +20,7 @@ const serverlessConfiguration: AWS = {
   functions: {
     'get-all-exercises': {
       handler: './src/functions/get-all-exercises.main',
+      timeout: 30,
       events: [
         {
           http: {
@@ -31,11 +32,12 @@ const serverlessConfiguration: AWS = {
     },
     'get-by-body-part': {
       handler: './src/functions/get-by-body-part.main',
+      timeout: 30,
       events: [
         {
           http: {
             method: 'get',
-            path: 'exercises/{bodyPart}'
+            path: 'exercises/body-part/{which}'
           }
         }
       ]
@@ -48,6 +50,18 @@ const serverlessConfiguration: AWS = {
           http: {
             method: 'get',
             path: 'exercises/equipment/{which}'
+          }
+        }
+      ]
+    },
+    'get-by-target': {
+      handler: './src/functions/get-by-target.main',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'exercises/target/{which}'
           }
         }
       ]

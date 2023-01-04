@@ -42,6 +42,27 @@ export type EquipmentType =
   'weighted' |
   'wheel roller'
 
+export type TargetType =
+  'abductors' |
+  'abs' |
+  'adductors' |
+  'biceps' |
+  'calves' |
+  'cardiovascular system' |
+  'delts' |
+  'forearms' |
+  'glutes' |
+  'hamstrings' |
+  'lats' |
+  'levator scapulae' |
+  'pectorals' |
+  'quads' |
+  'serratus anterior' |
+  'spine' |
+  'traps' |
+  'triceps' |
+  'upper back'
+
 export interface GetAllExercisesInterface {
   id: string
   name: string
@@ -87,5 +108,16 @@ export class ExerciseService {
     const exercisesObject: GetAllExercisesInterface[] = JSON.parse(object.Body!.toString('utf-8'))
 
     return exercisesObject.filter(exercise => exercise.equipment === equipment)
+  }
+
+  public async getByTarget (target: TargetType): Promise<GetAllExercisesInterface[]> {
+    const object = await this.s3.client().getObject({
+      Bucket: 'pump-data/json',
+      Key: 'all-exercises.json'
+    }).promise()
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-base-to-string
+    const exercisesObject: GetAllExercisesInterface[] = JSON.parse(object.Body!.toString('utf-8'))
+
+    return exercisesObject.filter(exercise => exercise.target === target)
   }
 }
