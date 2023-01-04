@@ -12,12 +12,42 @@ export type BodyPartType =
   'upper legs' |
   'waist'
 
+export type EquipmentType =
+  'assisted' |
+  'band' |
+  'barbell' |
+  'body weight' |
+  'bosu ball' |
+  'cable' |
+  'dumbbell' |
+  'elliptical machine' |
+  'ez barbell' |
+  'hammer' |
+  'kettlebell' |
+  'leverage machine' |
+  'medicine ball' |
+  'olympic barbell' |
+  'resistance band' |
+  'roller' |
+  'rope' |
+  'skierg machine' |
+  'sled machine' |
+  'smith machine' |
+  'stability ball' |
+  'stationary bike' |
+  'stepmill machine' |
+  'tire' |
+  'trap bar' |
+  'upper body ergometer' |
+  'weighted' |
+  'wheel roller'
+
 export interface GetAllExercisesInterface {
   id: string
   name: string
   target: string
   bodyPart: BodyPartType
-  equipment: string
+  equipment: EquipmentType
   gifUrl: string
 }
 
@@ -46,5 +76,16 @@ export class ExerciseService {
     const exercisesObject: GetAllExercisesInterface[] = JSON.parse(object.Body!.toString('utf-8'))
 
     return exercisesObject.filter(exercise => exercise.bodyPart === bodyPart)
+  }
+
+  public async getByEquipment (equipment: EquipmentType): Promise<GetAllExercisesInterface[]> {
+    const object = await this.s3.client().getObject({
+      Bucket: 'pump-data/json',
+      Key: 'all-exercises.json'
+    }).promise()
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-base-to-string
+    const exercisesObject: GetAllExercisesInterface[] = JSON.parse(object.Body!.toString('utf-8'))
+
+    return exercisesObject.filter(exercise => exercise.equipment === equipment)
   }
 }

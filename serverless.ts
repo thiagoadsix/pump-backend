@@ -35,16 +35,19 @@ const serverlessConfiguration: AWS = {
         {
           http: {
             method: 'get',
-            path: 'exercises/{bodyPart}',
-            request: {
-              parameters: {
-                paths: {
-                  which: {
-                    required: true
-                  }
-                }
-              }
-            }
+            path: 'exercises/{bodyPart}'
+          }
+        }
+      ]
+    },
+    'get-by-equipment': {
+      handler: './src/functions/get-by-equipment.main',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'exercises/equipment/{which}'
           }
         }
       ]
