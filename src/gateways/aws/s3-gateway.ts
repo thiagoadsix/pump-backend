@@ -5,8 +5,12 @@ export class S3Gateway {
 
   constructor () {
     this.s3 = new S3({
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+      credentials: {
+        accessKeyId: '123',
+        secretAccessKey: 'xyz'
+      },
+      endpoint: 'http://localhost:4566',
+      s3ForcePathStyle: true
     })
   }
 

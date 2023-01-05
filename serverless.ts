@@ -7,6 +7,8 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
+    // eslint-disable-next-line no-template-curly-in-string
+    stage: "${opt:stage,'local'}",
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true
@@ -15,11 +17,15 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       // eslint-disable-next-line no-template-curly-in-string
-      BASE_URL: '${.env:BASE_URL}',
-      // eslint-disable-next-line no-template-curly-in-string
       AWS_ACCESS_KEY_ID: '${.env:AWS_ACCESS_KEY_ID}',
       // eslint-disable-next-line no-template-curly-in-string
-      AWS_SECRET_ACCESS_KEY: '${.env:AWS_SECRET_ACCESS_KEY}'
+      AWS_SECRET_ACCESS_KEY: '${.env:AWS_SECRET_ACCESS_KEY}',
+      // eslint-disable-next-line no-template-curly-in-string
+      STAGE: '${self:provider.stage}',
+      // eslint-disable-next-line no-template-curly-in-string
+      EXERCISE_BASE_URL: '${.env:EXERCISE_BASE_URL}',
+      // eslint-disable-next-line no-template-curly-in-string
+      CLOUD_FRONT_BASE_URL: '${.env:CLOUD_FRONT_BASE_URL}'
     }
   },
   // import the function via paths
@@ -80,6 +86,30 @@ const serverlessConfiguration: AWS = {
           http: {
             method: 'get',
             path: 'exercises/{id}'
+          }
+        }
+      ]
+    },
+    'save-all-gif-exercises-robot': {
+      handler: './src/functions/save-all-gif-exercises-robot.main',
+      timeout: 900,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'robot/gif'
+          }
+        }
+      ]
+    },
+    'create-json-exercise-data-robot': {
+      handler: './src/functions/create-json-exercise-data-robot.main',
+      timeout: 900,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'robot/json'
           }
         }
       ]

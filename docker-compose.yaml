@@ -8,8 +8,6 @@ services:
     ports:
       - "4566-4583:4566-4583"
     environment:
-      - SERVICES=sqs,sns,dynamodb,s3
-      - EDGE_PORT=4566
       - DEBUG=1
     volumes:
       - "${TEMPDIR:-/var/lib/localstack}:/var/lib/localstack"
