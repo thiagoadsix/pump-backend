@@ -6,7 +6,9 @@
   "scripts": {
     "prettier": "prettier 'src/**/*.ts'",
     "prettier:fix": "prettier --write 'src/**/*.ts'",
-    "sls:offline": "sls offline"
+    "sls:offline": "sls offline --stage local",
+    "sls:deploy:dev": "sls deploy --stage dev",
+    "sls:deploy:prod": "sls deploy --stage prod"
   },
   "engines": {
     "node": ">=14.15.0"
