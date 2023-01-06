@@ -9,6 +9,13 @@ export const stage = (which: StageType): any => {
           secretAccessKey: 'xyz',
           s3ForcePathStyle: true,
           endpoint: 'http://localhost:4566'
+        },
+        dynamo: {
+          credentials: {
+            accessKeyId: '123',
+            secretAccessKey: 'xyz'
+          },
+          endpoint: 'http://localhost:4566'
         }
       }
     default:

@@ -14,6 +14,7 @@ const serverlessConfiguration: AWS = {
       shouldStartNameWithService: true
     },
     environment: {
+      EXERCISE_TABLE_NAME: 'Exercises',
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       // eslint-disable-next-line no-template-curly-in-string
@@ -110,6 +111,18 @@ const serverlessConfiguration: AWS = {
           http: {
             method: 'get',
             path: 'robot/json'
+          }
+        }
+      ]
+    },
+    'populate-table-robot': {
+      handler: './src/functions/populate-table-robot.main',
+      timeout: 900,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'robot/populate'
           }
         }
       ]

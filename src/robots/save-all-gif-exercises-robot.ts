@@ -5,7 +5,7 @@ import { S3 } from 'aws-sdk'
 
 export class SaveAllGifExercisesRobot {
   async execute (): Promise<void> {
-    await Chunk.chunk(Chunk.getIdList(1325), this.saveOnBucket, 2)
+    await Chunk.chunk(Chunk.getIdList(1325), this.saveOnBucket, 10)
   }
 
   private async saveOnBucket (id: string): Promise<ManagedUpload.SendData> {

@@ -6,6 +6,7 @@
       "@services/*": ["src/services/*"],
       "@gateways/*": ["src/gateways/*"],
       "@contracts/*": ["src/contracts/*"],
+      "@envs/*": ["src/envs/*"],
       "@libs/*": ["src/libs/*"]
     }
   }
