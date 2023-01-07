@@ -1,4 +1,4 @@
-import { ExerciseNotFoundException } from '../../../domain/exceptions/exercises/exercise-not-found.exception'
+import { ExerciseNotFoundByIdException } from '../../exceptions/exercises/exercise-not-found-by-id.exception'
 import { Exercise } from '../../../domain/entities/exercise'
 import { ExerciseRepository } from '../../../domain/protocols/repositories/exercise.repository'
 
@@ -9,11 +9,11 @@ export class FindExerciseByIdUsecase {
     this.exerciseRepository = exerciseRepository
   }
 
-  async execute (input: FindExerciseByIdUsecase.Input): Promise<FindExerciseByIdUsecase.Output> {
-    const exercise = await this.exerciseRepository.findById(input.id)
+  async execute (id: string): Promise<FindExerciseByIdUsecase.Output> {
+    const exercise = await this.exerciseRepository.findById(id)
 
     if (exercise == null) {
-      throw new ExerciseNotFoundException(input.id)
+      throw new ExerciseNotFoundByIdException(id)
     }
 
     return exercise
@@ -21,9 +21,5 @@ export class FindExerciseByIdUsecase {
 }
 
 export namespace FindExerciseByIdUsecase {
-  export interface Input {
-    id: string
-  }
-
   export type Output = Exercise
 }
