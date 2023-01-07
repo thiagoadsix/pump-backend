@@ -1,18 +1,18 @@
 import { Exercise } from '../../entities/exercise'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 
-export class FindAllExerciseUsecase {
+export class FindAllExercisesUsecase {
   constructor (
     private readonly exerciseRepository: ExerciseRepository
   ) {
     this.exerciseRepository = exerciseRepository
   }
 
-  async execute (): Promise<FindAllExerciseUsecase.Output> {
+  async execute (): Promise<FindAllExercisesUsecase.Output> {
     return await this.exerciseRepository.findAll()
   }
 }
 
-export namespace FindAllExerciseUsecase {
+export namespace FindAllExercisesUsecase {
   export type Output = Exercise[]
 }
