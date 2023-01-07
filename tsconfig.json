@@ -23,7 +23,8 @@
     ".serverless/**/*",
     ".webpack/**/*",
     "_warmup/**/*",
-    ".vscode/**/*"
+    ".vscode/**/*",
+    "./coverage"
   ],
   "ts-node": {
     "require": [

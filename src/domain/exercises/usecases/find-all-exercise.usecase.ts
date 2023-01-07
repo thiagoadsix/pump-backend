@@ -9,7 +9,7 @@ export class FindAllExerciseUsecase {
   }
 
   async execute (): Promise<FindAllExerciseUsecase.Output> {
-    return this.exerciseRepository.findAll()
+    return await this.exerciseRepository.findAll()
   }
 }
 
