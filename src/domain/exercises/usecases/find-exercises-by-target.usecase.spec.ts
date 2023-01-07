@@ -12,7 +12,8 @@ describe('FindExerciseByTargetUsecase', () => {
       findById: jest.fn(),
       findAll: jest.fn(),
       findByTarget: jest.fn(),
-      findByBodyPart: jest.fn()
+      findByBodyPart: jest.fn(),
+      findByEquipment: jest.fn()
     }
 
     findExercisesByTargetUsecase = new FindExercisesByTargetUsecase(exerciseRepository)
