@@ -9,7 +9,8 @@ describe('FindExerciseByIdUsecase', () => {
   beforeEach(() => {
     exerciseRepository = {
       findById: jest.fn(),
-      findAll: jest.fn()
+      findAll: jest.fn(),
+      findByTarget: jest.fn()
     }
 
     findExerciseByIdUsecase = new FindExerciseByIdUsecase(exerciseRepository)
