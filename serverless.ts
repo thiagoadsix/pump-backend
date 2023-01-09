@@ -77,6 +77,18 @@ const serverlessConfiguration: AWS = {
           }
         }
       ]
+    },
+    'find-by-body-part': {
+      handler: './src/application/lambdas/exercises/find-exercise-by-body-part-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'exercises/body-part/{which}'
+          }
+        }
+      ]
     }
   },
   package: { individually: true },
