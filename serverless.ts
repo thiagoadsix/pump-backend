@@ -29,100 +29,15 @@ const serverlessConfiguration: AWS = {
       CLOUD_FRONT_BASE_URL: '${.env:CLOUD_FRONT_BASE_URL}'
     }
   },
-  // import the function via paths
   functions: {
-    'get-all-exercises': {
-      handler: './src/functions/get-all-exercises.main',
+    'find-all-exercises': {
+      handler: './src/application/lambdas/exercises/find-all-exercises-lambda.handler',
       timeout: 30,
       events: [
         {
           http: {
             method: 'get',
             path: 'exercises'
-          }
-        }
-      ]
-    },
-    'get-by-body-part': {
-      handler: './src/functions/get-by-body-part.main',
-      timeout: 30,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'exercises/body-part/{which}'
-          }
-        }
-      ]
-    },
-    'get-by-equipment': {
-      handler: './src/functions/get-by-equipment.main',
-      timeout: 30,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'exercises/equipment/{which}'
-          }
-        }
-      ]
-    },
-    'get-by-target': {
-      handler: './src/functions/get-by-target.main',
-      timeout: 30,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'exercises/target/{which}'
-          }
-        }
-      ]
-    },
-    'get-by-id': {
-      handler: './src/functions/get-by-id.main',
-      timeout: 30,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'exercises/{id}'
-          }
-        }
-      ]
-    },
-    'save-all-gif-exercises-robot': {
-      handler: './src/functions/save-all-gif-exercises-robot.main',
-      timeout: 900,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'robot/gif'
-          }
-        }
-      ]
-    },
-    'create-json-exercise-data-robot': {
-      handler: './src/functions/create-json-exercise-data-robot.main',
-      timeout: 900,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'robot/json'
-          }
-        }
-      ]
-    },
-    'populate-table-robot': {
-      handler: './src/functions/populate-table-robot.main',
-      timeout: 900,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'robot/populate'
           }
         }
       ]

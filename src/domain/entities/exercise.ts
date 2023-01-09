@@ -6,7 +6,7 @@ export class Exercise {
   target: TargetTypeAggregate
   bodyPart: BodyPartTypeAggregate
   equipment: EquipmentTypeAggregate
-  gif: string
+  url: string
 
   constructor (
     id: string,
@@ -14,13 +14,13 @@ export class Exercise {
     target: TargetTypeAggregate,
     bodyPart: BodyPartTypeAggregate,
     equipment: EquipmentTypeAggregate,
-    gif: string
+    url: string
   ) {
     this.id = id
     this.name = name
     this.target = target
     this.bodyPart = bodyPart
     this.equipment = equipment
-    this.gif = gif
+    this.url = url
   }
 }

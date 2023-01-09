@@ -21,7 +21,7 @@ describe('FindExerciseByTargetUsecase', () => {
 
   describe('execute', () => {
     it('should find all exercises by target', async () => {
-      const expectedResult: FindExercisesByTargetUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', gif: 'http://example' }]
+      const expectedResult: FindExercisesByTargetUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
       jest.spyOn(exerciseRepository, 'findByTarget').mockResolvedValue(expectedResult)
 
       const input: TargetTypeAggregate = 'abs'
@@ -31,7 +31,7 @@ describe('FindExerciseByTargetUsecase', () => {
     })
 
     it('should call FindByTarget with correct values', async () => {
-      const expectedResult: FindExercisesByTargetUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', gif: 'http://example' }]
+      const expectedResult: FindExercisesByTargetUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
       jest.spyOn(exerciseRepository, 'findByTarget').mockResolvedValue(expectedResult)
 
       const input: TargetTypeAggregate = 'abs'

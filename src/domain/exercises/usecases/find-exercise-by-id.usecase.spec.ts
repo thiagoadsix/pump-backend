@@ -20,7 +20,7 @@ describe('FindExerciseByIdUsecase', () => {
 
   describe('execute', () => {
     it('should return the exercise with the given id', async () => {
-      const expectedExercise: FindExerciseByIdUsecase.Output = { id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', gif: 'http://example' }
+      const expectedExercise: FindExerciseByIdUsecase.Output = { id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }
       jest.spyOn(exerciseRepository, 'findById').mockResolvedValue(expectedExercise)
 
       const input = '1'

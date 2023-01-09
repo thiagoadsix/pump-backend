@@ -21,7 +21,7 @@ describe('FindExercisesByBodyPartUsecase', () => {
 
   describe('execute', () => {
     it('should find all exercises by body part', async () => {
-      const expectedResult: FindExercisesByBodyPartUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', gif: 'http://example' }]
+      const expectedResult: FindExercisesByBodyPartUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
       jest.spyOn(exerciseRepository, 'findByBodyPart').mockResolvedValue(expectedResult)
 
       const input: BodyPartTypeAggregate = 'back'
@@ -31,7 +31,7 @@ describe('FindExercisesByBodyPartUsecase', () => {
     })
 
     it('should call FindByBodyPart with correct values', async () => {
-      const expectedResult: FindExercisesByBodyPartUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', gif: 'http://example' }]
+      const expectedResult: FindExercisesByBodyPartUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
       jest.spyOn(exerciseRepository, 'findByBodyPart').mockResolvedValue(expectedResult)
 
       const input: BodyPartTypeAggregate = 'back'
