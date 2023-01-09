@@ -126,6 +126,18 @@ const serverlessConfiguration: AWS = {
           }
         }
       ]
+    },
+    'delete-workout-by-id': {
+      handler: './src/application/lambdas/workouts/delete-workout-by-id-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'delete',
+            path: 'workouts/{id}/user/{userId}'
+          }
+        }
+      ]
     }
   },
   package: { individually: true },

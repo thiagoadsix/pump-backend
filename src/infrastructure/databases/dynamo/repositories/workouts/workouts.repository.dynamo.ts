@@ -7,6 +7,13 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     this.client = client
   }
 
+  async delete (id: string, userId: string): Promise<void> {
+    await this.client.delete({
+      TableName: String(process.env.WORKOUTS_TABLE_NAME),
+      Key: { id, userId }
+    })
+  }
+
   async findById (id: string): Promise<Workout | null> {
     const result = await this.client.query({
       TableName: String(process.env.WORKOUTS_TABLE_NAME),
