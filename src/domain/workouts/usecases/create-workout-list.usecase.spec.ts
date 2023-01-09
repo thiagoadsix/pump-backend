@@ -13,6 +13,7 @@ describe('CreateWorkoutListUsecase', () => {
       v4: jest.fn().mockResolvedValue('mock-id')
     }
     workoutRepository = {
+      findAll: jest.fn(),
       save: jest.fn()
     }
     usecase = new CreateWorkoutListUsecase(uuidService, workoutRepository)

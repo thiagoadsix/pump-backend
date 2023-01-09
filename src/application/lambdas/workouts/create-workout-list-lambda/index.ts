@@ -1,10 +1,10 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-import { makeCreateWorkoutListUsecaseFactoryCreateWorkoutListUsecase } from 'src/application/factories/workouts/create-workout-list-usecase-factory'
+import { makeCreateWorkoutListUsecaseFactoryCreateWorkoutListUsecase } from '../../../factories/workouts/create-workout-list-usecase-factory'
 
 export async function handler (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
   const input = JSON.parse(event.body as any)
-  const findExerciseByTarget = makeCreateWorkoutListUsecaseFactoryCreateWorkoutListUsecase()
-  await findExerciseByTarget.execute(input)
+  const usecase = makeCreateWorkoutListUsecaseFactoryCreateWorkoutListUsecase()
+  await usecase.execute(input)
 
   return {
     statusCode: 201,
