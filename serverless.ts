@@ -41,6 +41,18 @@ const serverlessConfiguration: AWS = {
           }
         }
       ]
+    },
+    'find-exercise-by-id': {
+      handler: './src/application/lambdas/exercises/find-exercise-by-id-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'exercises/{id}'
+          }
+        }
+      ]
     }
   },
   package: { individually: true },

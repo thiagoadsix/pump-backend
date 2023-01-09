@@ -9,16 +9,23 @@ export class ExerciseRepositoryDynamo implements ExerciseRepository {
   }
 
   async findById (id: string): Promise<Exercise | null> {
-    const result = await this.client.get({
+    const result = await this.client.query({
       TableName: String(process.env.EXERCISE_TABLE_NAME),
-      Key: { id }
-    })
+      KeyConditionExpression: '#id = :id',
+      ExpressionAttributeNames: {
+        '#id': 'id'
+      },
+      ExpressionAttributeValues: {
+        ':id': id
+      },
+      Limit: 1
+    }).then(item => item.Items?.shift())
 
-    if (result.Item == null) {
+    if (result == null) {
       return null
     }
 
-    return this.fromDynamoDBItem(result.Item)
+    return this.fromDynamoDBItem(result)
   }
 
   async findAll (): Promise<Exercise[] | []> {
