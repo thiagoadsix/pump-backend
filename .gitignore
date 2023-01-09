@@ -1,4 +1,6 @@
 old-src
+old-2-src
+coverage
 node_modules
 .env
 .esbuild

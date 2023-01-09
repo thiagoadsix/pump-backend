@@ -29,10 +29,9 @@ const serverlessConfiguration: AWS = {
       CLOUD_FRONT_BASE_URL: '${.env:CLOUD_FRONT_BASE_URL}'
     }
   },
-  // import the function via paths
   functions: {
-    'get-all-exercises': {
-      handler: './src/functions/get-all-exercises.main',
+    'find-all-exercises': {
+      handler: './src/application/lambdas/exercises/find-all-exercises-lambda.handler',
       timeout: 30,
       events: [
         {
@@ -43,44 +42,8 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
-    'get-by-body-part': {
-      handler: './src/functions/get-by-body-part.main',
-      timeout: 30,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'exercises/body-part/{which}'
-          }
-        }
-      ]
-    },
-    'get-by-equipment': {
-      handler: './src/functions/get-by-equipment.main',
-      timeout: 30,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'exercises/equipment/{which}'
-          }
-        }
-      ]
-    },
-    'get-by-target': {
-      handler: './src/functions/get-by-target.main',
-      timeout: 30,
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'exercises/target/{which}'
-          }
-        }
-      ]
-    },
-    'get-by-id': {
-      handler: './src/functions/get-by-id.main',
+    'find-exercise-by-id': {
+      handler: './src/application/lambdas/exercises/find-exercise-by-id-lambda.handler',
       timeout: 30,
       events: [
         {
@@ -91,38 +54,38 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
-    'save-all-gif-exercises-robot': {
-      handler: './src/functions/save-all-gif-exercises-robot.main',
-      timeout: 900,
+    'find-by-target': {
+      handler: './src/application/lambdas/exercises/find-exercise-by-target-lambda.handler',
+      timeout: 30,
       events: [
         {
           http: {
             method: 'get',
-            path: 'robot/gif'
+            path: 'exercises/target/{which}'
           }
         }
       ]
     },
-    'create-json-exercise-data-robot': {
-      handler: './src/functions/create-json-exercise-data-robot.main',
-      timeout: 900,
+    'find-by-equipment': {
+      handler: './src/application/lambdas/exercises/find-exercise-by-equipment-lambda.handler',
+      timeout: 30,
       events: [
         {
           http: {
             method: 'get',
-            path: 'robot/json'
+            path: 'exercises/equipment/{which}'
           }
         }
       ]
     },
-    'populate-table-robot': {
-      handler: './src/functions/populate-table-robot.main',
-      timeout: 900,
+    'find-by-body-part': {
+      handler: './src/application/lambdas/exercises/find-exercise-by-body-part-lambda.handler',
+      timeout: 30,
       events: [
         {
           http: {
             method: 'get',
-            path: 'robot/populate'
+            path: 'exercises/body-part/{which}'
           }
         }
       ]
