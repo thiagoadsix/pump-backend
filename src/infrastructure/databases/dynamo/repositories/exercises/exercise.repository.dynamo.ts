@@ -86,6 +86,24 @@ export class ExerciseRepositoryDynamo implements ExerciseRepository {
     return result.Items.map(item => this.fromDynamoDBItem(item))
   }
 
+  async findByIds (ids: string[]): Promise<Exercise[]> {
+    const params: AWS.DynamoDB.DocumentClient.BatchGetItemInput = {
+      RequestItems: {
+        [String(process.env.EXERCISE_TABLE_NAME)]: {
+          Keys: ids.map(id => ({ id }))
+        }
+      }
+    }
+
+    const result = await this.client.batchGet(params)
+
+    if (result.Responses != null) {
+      return result.Responses[String(process.env.EXERCISE_TABLE_NAME)].map(item => this.fromDynamoDBItem(item))
+    } else {
+      return []
+    }
+  }
+
   private fromDynamoDBItem (item: AWS.DynamoDB.DocumentClient.AttributeMap): Exercise {
     return {
       id: item.id,

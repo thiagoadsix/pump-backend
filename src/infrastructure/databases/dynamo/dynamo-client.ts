@@ -55,4 +55,8 @@ export class DynamoClient {
   async update (params: AWS.DynamoDB.DocumentClient.UpdateItemInput): Promise<AWS.DynamoDB.DocumentClient.UpdateItemOutput> {
     return await this.client.update(params).promise()
   }
+
+  async batchGet (params: AWS.DynamoDB.DocumentClient.BatchGetItemInput): Promise<AWS.DynamoDB.DocumentClient.BatchGetItemOutput> {
+    return await this.client.batchGet(params).promise()
+  }
 }

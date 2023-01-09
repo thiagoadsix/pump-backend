@@ -1,6 +1,6 @@
 import { ExerciseNotFoundByIdException } from '../../exceptions/exercises/exercise-not-found-by-id.exception'
-import { Exercise } from '../../../domain/entities/exercise'
-import { ExerciseRepository } from '../../../domain/protocols/repositories/exercise.repository'
+import { Exercise } from '../../entities/exercise'
+import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 
 export class FindExerciseByIdUsecase {
   constructor (

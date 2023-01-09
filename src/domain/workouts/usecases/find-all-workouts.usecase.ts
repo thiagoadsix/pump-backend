@@ -1,18 +1,32 @@
-import { WorkoutRepository } from 'src/domain/protocols/repositories/workout.repository'
+import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
+import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 import { Workout } from '../../entities/workout'
+import { Exercise } from '../../entities/exercise'
 
 export class FindAllWorkoutsUsecase {
   constructor (
-    private readonly workoutRepository: WorkoutRepository
+    private readonly workoutRepository: WorkoutRepository,
+    private readonly exerciseRepository: ExerciseRepository
   ) {
     this.workoutRepository = workoutRepository
+    this.exerciseRepository = exerciseRepository
   }
 
   async execute (userId: string): Promise<FindAllWorkoutsUsecase.Output> {
-    return await this.workoutRepository.findAll(userId)
+    const workouts = await this.workoutRepository.findAll(userId)
+    const workoutsWithExercises = await Promise.all(workouts.map(async workout => {
+      const exercises = await this.exerciseRepository.findByIds(workout.exerciseIds)
+      return { ...workout, exercises }
+    }))
+
+    return workoutsWithExercises
   }
 }
 
 export namespace FindAllWorkoutsUsecase {
-  export type Output = Workout[]
+  interface WorkoutWithExercises extends Workout {
+    exercises: Exercise[]
+  }
+
+  export type Output = WorkoutWithExercises[]
 }

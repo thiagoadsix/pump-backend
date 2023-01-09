@@ -1,5 +1,5 @@
 import { BodyPartTypeAggregate, EquipmentTypeAggregate, TargetTypeAggregate } from '../../aggregates'
-import { Exercise } from '../../../domain/entities/exercise'
+import { Exercise } from '../../entities/exercise'
 
 export interface ExerciseRepository {
   findById: (id: string) => Promise<Exercise | null>
@@ -7,4 +7,5 @@ export interface ExerciseRepository {
   findByTarget: (target: TargetTypeAggregate) => Promise<Exercise[]>
   findByBodyPart: (bodyPart: BodyPartTypeAggregate) => Promise<Exercise[]>
   findByEquipment: (equipment: EquipmentTypeAggregate) => Promise<Exercise[]>
+  findByIds: (ids: string[]) => Promise<Exercise[]>
 }
