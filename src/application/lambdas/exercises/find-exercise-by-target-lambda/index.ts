@@ -4,8 +4,8 @@ import { makeFindExercisesByTargetUsecaseFactory } from '../../../factories/exer
 
 export async function handler (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
   const target = event.pathParameters?.which as TargetTypeAggregate
-  const findAllExercisesUsecase = makeFindExercisesByTargetUsecaseFactory()
-  const result = await findAllExercisesUsecase.execute(target)
+  const findExerciseByTarget = makeFindExercisesByTargetUsecaseFactory()
+  const result = await findExerciseByTarget.execute(target)
 
   return {
     statusCode: 201,

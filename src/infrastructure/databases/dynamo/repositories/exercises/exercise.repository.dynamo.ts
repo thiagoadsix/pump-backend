@@ -55,10 +55,9 @@ export class ExerciseRepositoryDynamo implements ExerciseRepository {
   }
 
   async findByBodyPart (bodyPart: BodyPartTypeAggregate): Promise<Exercise[]> {
-    const result = await this.client.query({
+    const result = await this.client.scan({
       TableName: String(process.env.EXERCISE_TABLE_NAME),
-      IndexName: 'bodyPart-index',
-      KeyConditionExpression: 'bodyPart = :bodyPart',
+      FilterExpression: 'bodyPart = :bodyPart',
       ExpressionAttributeValues: {
         ':bodyPart': bodyPart
       }
@@ -72,10 +71,9 @@ export class ExerciseRepositoryDynamo implements ExerciseRepository {
   }
 
   async findByEquipment (equipment: EquipmentTypeAggregate): Promise<Exercise[]> {
-    const result = await this.client.query({
+    const result = await this.client.scan({
       TableName: String(process.env.EXERCISE_TABLE_NAME),
-      IndexName: 'equipment-index',
-      KeyConditionExpression: 'equipment = :equipment',
+      FilterExpression: 'equipment = :equipment',
       ExpressionAttributeValues: {
         ':equipment': equipment
       }

@@ -65,6 +65,18 @@ const serverlessConfiguration: AWS = {
           }
         }
       ]
+    },
+    'find-by-equipment': {
+      handler: './src/application/lambdas/exercises/find-exercise-by-equipment-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'exercises/equipment/{which}'
+          }
+        }
+      ]
     }
   },
   package: { individually: true },
