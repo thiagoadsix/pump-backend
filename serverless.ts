@@ -15,6 +15,7 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       EXERCISE_TABLE_NAME: 'Exercises',
+      WORKOUTS_TABLE_NAME: 'Workouts',
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       // eslint-disable-next-line no-template-curly-in-string
@@ -86,6 +87,18 @@ const serverlessConfiguration: AWS = {
           http: {
             method: 'get',
             path: 'exercises/body-part/{which}'
+          }
+        }
+      ]
+    },
+    'create-workout-list': {
+      handler: './src/application/lambdas/workouts/create-workout-list-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'post',
+            path: 'workouts'
           }
         }
       ]
