@@ -7,6 +7,26 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     this.client = client
   }
 
+  async findById (id: string): Promise<Workout | null> {
+    const result = await this.client.query({
+      TableName: String(process.env.WORKOUTS_TABLE_NAME),
+      KeyConditionExpression: '#id = :id',
+      ExpressionAttributeNames: {
+        '#id': 'id'
+      },
+      ExpressionAttributeValues: {
+        ':id': id
+      },
+      Limit: 1
+    }).then(item => item.Items?.shift())
+
+    if (result == null) {
+      return null
+    }
+
+    return this.fromDynamoDBItem(result)
+  }
+
   async findAll (userId: string): Promise<Workout[]> {
     const result = await this.client.scan({
       TableName: String(process.env.WORKOUTS_TABLE_NAME),

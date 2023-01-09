@@ -14,7 +14,8 @@ describe('CreateWorkoutListUsecase', () => {
     }
     workoutRepository = {
       findAll: jest.fn(),
-      save: jest.fn()
+      save: jest.fn(),
+      findById: jest.fn()
     }
     usecase = new CreateWorkoutListUsecase(uuidService, workoutRepository)
   })
