@@ -53,6 +53,18 @@ const serverlessConfiguration: AWS = {
           }
         }
       ]
+    },
+    'find-by-target': {
+      handler: './src/application/lambdas/exercises/find-exercise-by-target-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'exercises/target/{which}'
+          }
+        }
+      ]
     }
   },
   package: { individually: true },

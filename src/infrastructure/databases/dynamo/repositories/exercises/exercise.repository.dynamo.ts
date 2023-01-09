@@ -39,10 +39,9 @@ export class ExerciseRepositoryDynamo implements ExerciseRepository {
   }
 
   async findByTarget (target: TargetTypeAggregate): Promise<Exercise[]> {
-    const result = await this.client.query({
+    const result = await this.client.scan({
       TableName: String(process.env.EXERCISE_TABLE_NAME),
-      IndexName: 'target-index',
-      KeyConditionExpression: 'target = :target',
+      FilterExpression: 'target = :target',
       ExpressionAttributeValues: {
         ':target': target
       }
