@@ -30,7 +30,8 @@ describe('FindAllWorkoutsUsecase', () => {
     workoutRepository = {
       findAll: jest.fn().mockResolvedValue([workout]),
       save: jest.fn(),
-      findById: jest.fn()
+      findById: jest.fn(),
+      delete: jest.fn()
     }
     exerciseRepository = {
       findById: jest.fn(),

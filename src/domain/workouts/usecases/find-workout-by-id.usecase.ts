@@ -2,6 +2,7 @@ import { ExerciseRepository } from '../../protocols/repositories/exercise.reposi
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 import { Workout } from '../../entities/workout'
 import { Exercise } from '../../entities/exercise'
+import { WorkoutNotFoundByIdException } from '../../exceptions/workouts/workout-not-found-by-id.exceptions'
 
 export class FindWorkoutByIdUsecase {
   constructor (
@@ -16,7 +17,7 @@ export class FindWorkoutByIdUsecase {
     const workout = await this.workoutRepository.findById(id)
 
     if (workout == null) {
-      throw new Error('Error')
+      throw new WorkoutNotFoundByIdException(id)
     }
 
     const exercises = await this.exerciseRepository.findByIds(workout.exerciseIds)
