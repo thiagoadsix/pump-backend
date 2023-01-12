@@ -7,7 +7,8 @@ describe('DeleteWorkoutByIdUsecase', () => {
       delete: jest.fn().mockResolvedValue(undefined),
       save: jest.fn().mockResolvedValue(undefined),
       findAll: jest.fn().mockResolvedValue(undefined),
-      findById: jest.fn().mockResolvedValue(undefined)
+      findById: jest.fn().mockResolvedValue(undefined),
+      addExercise: jest.fn().mockResolvedValue(undefined)
     }
 
     // create an instance of the usecase

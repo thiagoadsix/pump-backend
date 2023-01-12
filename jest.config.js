@@ -17,5 +17,6 @@ module.exports = {
   // Mapper to the custom paths
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1'
-  }
+  },
+  maxConcurrency: 1
 }

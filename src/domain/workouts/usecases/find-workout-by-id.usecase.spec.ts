@@ -22,7 +22,8 @@ describe('FindWorkoutByIdUsecase', () => {
       findById: jest.fn(),
       delete: jest.fn(),
       findAll: jest.fn(),
-      save: jest.fn()
+      save: jest.fn(),
+      addExercise: jest.fn()
     }
 
     findWorkoutByIdUsecase = new FindWorkoutByIdUsecase(workoutRepository, exerciseRepository)

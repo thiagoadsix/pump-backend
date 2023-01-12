@@ -139,6 +139,18 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
+    'add-exercise-to-workout-list': {
+      handler: './src/application/lambdas/workouts/add-exercise-to-workout-list.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'post',
+            path: 'workouts/{id}/exercise'
+          }
+        }
+      ]
+    },
     'populate-table-robot': {
       handler: './src/application/lambdas/robots/populate-table-robot.handler',
       timeout: 900,
