@@ -138,6 +138,18 @@ const serverlessConfiguration: AWS = {
           }
         }
       ]
+    },
+    'populate-table-robot': {
+      handler: './src/application/lambdas/robots/populate-table-robot.handler',
+      timeout: 900,
+      events: [
+        {
+          http: {
+            method: 'post',
+            path: 'robot/populate-table'
+          }
+        }
+      ]
     }
   },
   package: { individually: true },
