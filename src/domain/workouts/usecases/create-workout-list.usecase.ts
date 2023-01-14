@@ -12,7 +12,8 @@ export class CreateWorkoutListUsecase {
     const workout: Workout = {
       id: await this.uuidService.v4(),
       title: input.title,
-      exerciseIds: input.exerciseIds,
+      // Fix this later
+      exerciseIds: [],
       userId: input.userId,
       createdAt: new Date().toISOString()
     }
@@ -24,7 +25,6 @@ export class CreateWorkoutListUsecase {
 export namespace CreateWorkoutListUsecase {
   export interface Input {
     userId: string
-    exerciseIds: string[]
     title: string
   }
 }

@@ -28,13 +28,13 @@ describe('CreateWorkoutListUsecase', () => {
 
     const input = {
       userId: 'user-id',
-      exerciseIds: ['exercise-id-1', 'exercise-id-2'],
+      exerciseIds: [],
       title: 'Workout Title'
     }
     const expectedWorkout: Workout = {
       id: 'mock-id',
       title: 'Workout Title',
-      exerciseIds: ['exercise-id-1', 'exercise-id-2'],
+      exerciseIds: [],
       userId: 'user-id',
       createdAt: '2023-01-09T16:23:27.190Z'
     }
