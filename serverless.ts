@@ -6,7 +6,7 @@ const serverlessConfiguration: AWS = {
   plugins: ['serverless-dotenv-plugin', 'serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
-    runtime: 'nodejs14.x',
+    runtime: 'nodejs16.x',
     // eslint-disable-next-line no-template-curly-in-string
     stage: "${opt:stage,'local'}",
     apiGateway: {
@@ -134,7 +134,7 @@ const serverlessConfiguration: AWS = {
         {
           http: {
             method: 'delete',
-            path: 'workouts/{id}/user/{userId}'
+            path: 'user/{userId}/workouts/{id}/'
           }
         }
       ]
@@ -171,7 +171,7 @@ const serverlessConfiguration: AWS = {
       minify: false,
       sourcemap: true,
       exclude: ['aws-sdk'],
-      target: 'node14',
+      target: 'node16',
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10

@@ -18,5 +18,13 @@ module.exports = {
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1'
   },
-  maxConcurrency: 1
+  maxConcurrency: 1,
+  reporters: [
+    'default',
+    ['jest-html-reporters', {
+      publicPath: './coverage/html',
+      filename: 'index.html',
+      expand: true
+    }]
+  ]
 }
