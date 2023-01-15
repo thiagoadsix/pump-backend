@@ -14,8 +14,18 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
       return
     }
 
-    const newIds = ids.filter(id => !workout.exerciseIds.includes(id))
-    workout.exerciseIds.push(...newIds)
+    if (workout.exerciseIds == null) {
+      workout.exerciseIds = []
+    }
+
+    ids.forEach(exerciseId => {
+      if (workout.exerciseIds != null) {
+        if (!workout.exerciseIds.includes(exerciseId)) {
+          workout.exerciseIds.push(exerciseId)
+        }
+      }
+    })
+
     workout.updatedAt = new Date().toISOString()
     await this.save(workout)
   }

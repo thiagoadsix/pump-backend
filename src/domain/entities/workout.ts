@@ -1,7 +1,7 @@
 export class Workout {
   id: string
   userId: string
-  exerciseIds: string[]
+  exerciseIds?: string[]
   title: string
   createdAt: string
   updatedAt?: string
@@ -16,8 +16,7 @@ export class Workout {
   ) {
     this.id = id
     this.userId = userId
-    // Fix this later
-    this.exerciseIds = exerciseIds ?? []
+    this.exerciseIds = exerciseIds
     this.title = title
     this.createdAt = createdAt
     this.updatedAt = updatedAt

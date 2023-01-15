@@ -87,6 +87,10 @@ export class ExerciseRepositoryDynamo implements ExerciseRepository {
   }
 
   async findByIds (ids: string[]): Promise<Exercise[]> {
+    if (ids == null) {
+      return []
+    }
+
     const params: AWS.DynamoDB.DocumentClient.BatchGetItemInput = {
       RequestItems: {
         [String(process.env.EXERCISE_TABLE_NAME)]: {
