@@ -35,7 +35,6 @@ Pump provides a simple RESTful API for managing workout and exercise data. The f
         "title": "Real Madrid Barcelo",
         "userId": "4cb4866b-a240-419a-b4f2-3d762d29eb17"
         ```
-
 - **POST** /workouts/:id : Add a exercises to a specific workout.
 - **DELETE** /workouts/:id/user/:userId : Delete a specific workout by ID and userId.
 
@@ -48,6 +47,7 @@ Pump provides a simple RESTful API for managing workout and exercise data. The f
 - - abductors | abs | adductors | biceps | calves | cardiovascular system | delts | forearms | glutes | hamstrings | lats | levator scapulae | pectorals | quads | serratus anterior | spine | traps | triceps | upper back
 - **GET** /exercises/equipment/:which : Retrieve a specific exercise by equipment.
 - - assisted | band | barbell | body weight | bosu ball | cable | dumbbell | elliptical machine | ez barbell | hammer | kettlebell | leverage machine | medicine ball | olympic barbell | resistance band | roller | rope | skierg machine | sled machine | smith machine | stability ball | stationary bike | stepmill machine | tire | trap bar | upper body ergometer | weighted | wheel roller
+
 
 
 
