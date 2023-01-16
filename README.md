@@ -27,24 +27,27 @@ The server will now be running on `http://localhost:3000/local` by default.
 Pump provides a simple RESTful API for managing workout and exercise data. The following endpoints are available:
 
 ### Workouts
-- **GET** /workouts/user/:userId: Retrieve a list of all workouts by user.
-- **GET** /workouts/:id: Retrieve a specific workout by ID.
+- **GET** /workouts/user/:userId : Retrieve a list of all workouts by user.
+- **GET** /workouts/:id : Retrieve a specific workout by ID.
 - **POST** /workouts: Create a new workout.
     - Body:
         ```json
         "title": "Real Madrid Barcelo",
         "userId": "4cb4866b-a240-419a-b4f2-3d762d29eb17"
         ```
-
-- **POST** /workouts/:id: Add a exercises to a specific workout.
-- **DELETE** /workouts/:id:/user/:userId: Delete a specific workout by ID and userId.
+- **POST** /workouts/:id : Add a exercises to a specific workout.
+- **DELETE** /workouts/:id/user/:userId : Delete a specific workout by ID and userId.
 
 ### Exercises
 - **GET** /exercises: Retrieve a list of all exercises.
-- **GET** /exercises/:id: Retrieve a specific exercise by given an ID.
-- **GET** /exercises/body-part/:which: Retrieve a specific exercise by body part ('back','card','chest','lower arms','lower legs','neck','shoulders','upper arms','upper legs','waist').
-- **GET** /exercises/target/:which: Retrieve a specific exercise by target ('abductors','abs','adductors','biceps','calves','cardiovascular system','delts','forearms','glutes','hamstrings','lats','levator scapulae','pectorals','quads','serratus anterior','spine','traps','triceps','upper back').
-- **GET** /exercises/equipment/:which: Retrieve a specific exercise by equipment ('assisted','band','barbell','body weight','bosu ball','cable','dumbbell','elliptical machine','ez barbell','hammer','kettlebell','leverage machine','medicine ball','olympic barbell','resistance band','roller','rope','skierg machine','sled machine','smith machine','stability ball','stationary bike','stepmill machine','tire','trap bar','upper body ergometer','weighted','wheel roller').
+- **GET** /exercises/:id : Retrieve a specific exercise by given an ID.
+- **GET** /exercises/body-part/:which : Retrieve a specific exercise by body part.
+- - back | card | chest | lower arms | lower legs | neck | shoulders | upper arms | upper legs | waist
+- **GET** /exercises/target/:which : Retrieve a specific exercise by target.
+- - abductors | abs | adductors | biceps | calves | cardiovascular system | delts | forearms | glutes | hamstrings | lats | levator scapulae | pectorals | quads | serratus anterior | spine | traps | triceps | upper back
+- **GET** /exercises/equipment/:which : Retrieve a specific exercise by equipment.
+- - assisted | band | barbell | body weight | bosu ball | cable | dumbbell | elliptical machine | ez barbell | hammer | kettlebell | leverage machine | medicine ball | olympic barbell | resistance band | roller | rope | skierg machine | sled machine | smith machine | stability ball | stationary bike | stepmill machine | tire | trap bar | upper body ergometer | weighted | wheel roller
+
 
 
 
