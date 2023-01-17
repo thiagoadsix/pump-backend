@@ -10,6 +10,18 @@ export class WorkoutRepositoryMock implements WorkoutRepository {
     console.log(`Saving a new workout list: ${JSON.stringify(input)}`)
   }
 
+  async findById (id: string): Promise<Workout | null> {
+    console.log(`Find workout with id ${JSON.stringify(id)}`)
+
+    return await Promise.resolve<Workout>({
+      id: 'aaaa1111-bb22-cc33-dd44-eeeeee555555',
+      title: 'Superior',
+      exerciseIds: ['0001', '0002'],
+      userId: 'zzzz1111-xx22-tt33-pp44-yyyyyy555555',
+      createdAt: new Date().toISOString()
+    })
+  }
+
   async findAll (userId: string): Promise<Workout[] | []> {
     console.log(`Find workouts with userId ${JSON.stringify(userId)}`)
 
@@ -22,18 +34,6 @@ export class WorkoutRepositoryMock implements WorkoutRepository {
         createdAt: new Date().toISOString()
       }
     ])
-  }
-
-  async findById (id: string): Promise<Workout | null> {
-    console.log(`Find workout with id ${JSON.stringify(id)}`)
-
-    return await Promise.resolve<Workout>({
-      id: 'aaaa1111-bb22-cc33-dd44-eeeeee555555',
-      title: 'Superior',
-      exerciseIds: ['0001', '0002'],
-      userId: 'zzzz1111-xx22-tt33-pp44-yyyyyy555555',
-      createdAt: new Date().toISOString()
-    })
   }
 
   async delete (id: string, userId: string): Promise<void> {
