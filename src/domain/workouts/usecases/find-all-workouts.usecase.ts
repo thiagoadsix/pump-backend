@@ -15,8 +15,12 @@ export class FindAllWorkoutsUsecase {
   async execute (userId: string): Promise<FindAllWorkoutsUsecase.Output> {
     const workouts = await this.workoutRepository.findAll(userId)
     const workoutsWithExercises = await Promise.all(workouts.map(async workout => {
-      const exercises = await this.exerciseRepository.findByIds(workout.exerciseIds)
-      return { ...workout, exercises }
+      if (workout.exerciseIds != null) {
+        const exercises = await this.exerciseRepository.findByIds(workout.exerciseIds)
+        return { ...workout, exercises }
+      }
+
+      return []
     }))
 
     return workoutsWithExercises
@@ -28,5 +32,5 @@ export namespace FindAllWorkoutsUsecase {
     exercises: Exercise[]
   }
 
-  export type Output = WorkoutWithExercises[]
+  export type Output = WorkoutWithExercises[] | []
 }
