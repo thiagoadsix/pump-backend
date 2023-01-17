@@ -1,4 +1,4 @@
-import { ExerciseIdsNotDefinedException } from 'src/domain/exceptions/workouts/exercise-ids-not-defined.exception'
+import { ExerciseIdsNotDefinedException } from '../../exceptions/workouts/exercise-ids-not-defined.exception'
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 
 export class AddExerciseToWorkoutListUsecase {

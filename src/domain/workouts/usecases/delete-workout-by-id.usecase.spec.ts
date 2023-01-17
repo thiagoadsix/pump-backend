@@ -1,4 +1,4 @@
-import { WorkoutRepository } from 'src/domain/protocols/repositories/workout.repository'
+import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 import { dateMock } from '../mocks/date.mock'
 import { WorkoutRepositoryMock } from '../mocks/workout.repository.mock'
 import { DeleteWorkoutByIdUsecase } from './delete-workout-by-id.usecase'

@@ -1,4 +1,4 @@
-import { WorkoutRepository } from 'src/domain/protocols/repositories/workout.repository'
+import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 
 export class DeleteWorkoutByIdUsecase {
   constructor (private readonly workoutRepository: WorkoutRepository) {

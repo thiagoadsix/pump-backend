@@ -10,7 +10,7 @@ export class WorkoutRepositoryMock implements WorkoutRepository {
     console.log(`Saving a new workout list: ${JSON.stringify(input)}`)
   }
 
-  async findAll (userId: string): Promise<Workout[]> {
+  async findAll (userId: string): Promise<Workout[] | []> {
     console.log(`Find workouts with userId ${JSON.stringify(userId)}`)
 
     return await Promise.resolve<Workout[]>([
