@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/thiagoadsix/pump/compare/v1.1.2...v1.1.3) (2023-01-17)
+
+
+### Performance Improvements
+
+* **test:** improve the tests for DeleteWorkoutByIdUsecase ([6a4184c](https://github.com/thiagoadsix/pump/commit/6a4184cfea5fee2508807469f50dbdefe25d1900))
+* **test:** improve the tests from FindAllWorkoutUsecase ([8974208](https://github.com/thiagoadsix/pump/commit/8974208c05d7f343a38b56e611d41d09a92a59af))
+* **test:** improve the tests from FindWorkoutByIdUsecase ([d013274](https://github.com/thiagoadsix/pump/commit/d01327489128b7ed6af74042f9b0f77b1ef9b144))
+
 ### [1.1.2](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.2) (2023-01-17)
 
 
