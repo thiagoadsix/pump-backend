@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.2) (2023-01-17)
+
+
+### Performance Improvements
+
+* **test:** improve the test for CreateWorkoutListUsecase ([54df573](https://github.com/thiagoadsix/pump/commit/54df5738f205884dece93edaae17470a78e004bc))
+
+
+### Others
+
+* **standard-version:** add custom types to standard-version ([08cb0ab](https://github.com/thiagoadsix/pump/commit/08cb0ab2d3462efeaea1b0684e253ff3cd021629))
+
 ## 1.1.0 (2023-01-16)
 
 
