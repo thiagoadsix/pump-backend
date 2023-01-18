@@ -12,14 +12,12 @@ describe('FindAllExercisesUsecase', () => {
     sut = new FindAllExercisesUsecase(exerciseRepository)
   })
 
-  describe('execute', () => {
-    it('should find all exercises', async () => {
-      const exerciseRepositoryFindAllSpy = jest.spyOn(exerciseRepository, 'findAll')
+  it('should call ExerciseRepository.findAll with correct values', async () => {
+    const exerciseRepositoryFindAllSpy = jest.spyOn(exerciseRepository, 'findAll')
 
-      await sut.execute()
+    await sut.execute()
 
-      expect(exerciseRepositoryFindAllSpy).toHaveBeenCalledTimes(1)
-      expect(exerciseRepositoryFindAllSpy).toHaveBeenCalledWith()
-    })
+    expect(exerciseRepositoryFindAllSpy).toHaveBeenCalledTimes(1)
+    expect(exerciseRepositoryFindAllSpy).toHaveBeenCalledWith()
   })
 })

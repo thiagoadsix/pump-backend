@@ -14,24 +14,22 @@ describe('FindExerciseByIdUsecase', () => {
     sut = new FindExerciseByIdUsecase(exerciseRepository)
   })
 
-  describe('execute', () => {
-    it('should return the exercise with the given id', async () => {
-      const exerciseRepositoryFindByIdSpy = jest.spyOn(exerciseRepository, 'findById')
+  it('should call ExerciseRepository.findById with correct values', async () => {
+    const exerciseRepositoryFindByIdSpy = jest.spyOn(exerciseRepository, 'findById')
 
-      const input = '1'
-      await sut.execute(input)
+    const input = '1'
+    await sut.execute(input)
 
-      expect(exerciseRepositoryFindByIdSpy).toHaveBeenCalledTimes(1)
-      expect(exerciseRepositoryFindByIdSpy).toHaveBeenCalledWith(input)
-    })
+    expect(exerciseRepositoryFindByIdSpy).toHaveBeenCalledTimes(1)
+    expect(exerciseRepositoryFindByIdSpy).toHaveBeenCalledWith(input)
+  })
 
-    it('should throw an ExerciseNotFoundByIdException if no exercise is found with the given an id', async () => {
-      jest.spyOn(exerciseRepository, 'findById').mockResolvedValue(null)
+  it('should throw an ExerciseNotFoundByIdException if no exercise is found with the given an id', async () => {
+    jest.spyOn(exerciseRepository, 'findById').mockResolvedValue(null)
 
-      const input = '1'
-      const result = sut.execute(input)
+    const input = '1'
+    const result = sut.execute(input)
 
-      await expect(result).rejects.toThrow(ExerciseNotFoundByIdException)
-    })
+    await expect(result).rejects.toThrow(ExerciseNotFoundByIdException)
   })
 })
