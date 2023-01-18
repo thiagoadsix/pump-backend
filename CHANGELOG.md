@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/thiagoadsix/pump/compare/v1.1.3...v1.1.4) (2023-01-18)
+
+
+### Performance Improvements
+
+* **poop:** just to test ([70e01d9](https://github.com/thiagoadsix/pump/commit/70e01d9981ec49a9befc8b56e7a8291e54c64d42))
+* **test:** improve the test from FindExerciseByBodyPartUsecase ([53d5d08](https://github.com/thiagoadsix/pump/commit/53d5d0816305a16970d26a6f826a77078498da6f))
+* **test:** improve the test from FindExerciseByEquipment ([94f1933](https://github.com/thiagoadsix/pump/commit/94f1933555c49373362c6163ac9e056706c3b3da))
+* **test:** improve the tests from FindExerciseByIdUsecase ([714a4fd](https://github.com/thiagoadsix/pump/commit/714a4fdb71edafa2c5b0c7af0ba2e8368ab7ab7e))
+* **test:** improve the tests from FindExercisesByTargetUsecase ([7e34c91](https://github.com/thiagoadsix/pump/commit/7e34c91ed39a397ce0ede6ba56b35bb116e32617))
+
+
+### Tests
+
+* **test:** improve the tests from FindAllExercisesUsecase ([51e6b82](https://github.com/thiagoadsix/pump/commit/51e6b8258e24e8ea98a5f3accc741d64757dd8cb))
+
 ### [1.1.3](https://github.com/thiagoadsix/pump/compare/v1.1.2...v1.1.3) (2023-01-17)
 
 
