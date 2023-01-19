@@ -1,8 +1,8 @@
-import { CreateWorkoutListUsecase } from '../../../../domain/workouts/usecases/create-workout-list.usecase'
+import { CreateWorkoutListUsecase } from '@domain/workouts/usecases/create-workout-list.usecase'
+import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
+import { WorkoutsRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
+import { UUIDService } from '@infrastructure/services/uuid/uuid.service'
 import { makeCreateWorkoutListUsecaseFactory } from './index'
-import { DynamoClient, DynamoClientStageType } from '../../../../infrastructure/databases/dynamo/dynamo-client'
-import { WorkoutsRepositoryDynamo } from '../../../../infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
-import { UUIDService } from '../../../../infrastructure/services/uuid/uuid.service'
 
 describe('makeCreateWorkoutListUsecaseFactory', () => {
   it('should create an instance of CreateWorkoutListUsecase', () => {

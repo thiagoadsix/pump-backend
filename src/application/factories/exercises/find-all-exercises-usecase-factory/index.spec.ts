@@ -1,7 +1,7 @@
-import { FindAllExercisesUsecase } from '../../../../domain/exercises/usecases/find-all-exercises.usecase'
+import { FindAllExercisesUsecase } from '@domain/exercises/usecases/find-all-exercises.usecase'
+import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
+import { ExerciseRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
 import { makeFindAllExercisesUsecaseFactory } from './index'
-import { DynamoClient, DynamoClientStageType } from '../../../../infrastructure/databases/dynamo/dynamo-client'
-import { ExerciseRepositoryDynamo } from '../../../../infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
 
 describe('makeFindAllExercisesUsecaseFactory', () => {
   it('should create an instance of FindAllExercisesUsecase', () => {

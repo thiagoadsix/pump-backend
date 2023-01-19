@@ -1,7 +1,7 @@
-import { DynamoClient, DynamoClientStageType } from '../../../../infrastructure/databases/dynamo/dynamo-client'
-import { CreateWorkoutListUsecase } from '../../../../domain/workouts/usecases/create-workout-list.usecase'
-import { WorkoutsRepositoryDynamo } from '../../../../infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
-import { UUIDService } from '../../../../infrastructure/services/uuid/uuid.service'
+import { CreateWorkoutListUsecase } from '@domain/workouts/usecases/create-workout-list.usecase'
+import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
+import { WorkoutsRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
+import { UUIDService } from '@infrastructure/services/uuid/uuid.service'
 
 export const makeCreateWorkoutListUsecaseFactory = (): CreateWorkoutListUsecase => {
   const dynamoClient = new DynamoClient(String(process.env.STAGE) as DynamoClientStageType)
