@@ -1,7 +1,7 @@
-import { FindExercisesByBodyPartUsecase } from '@domain/exercises/usecases/find-exercises-by-body-part.usecase'
-import { makeFindExercisesByBodyPartUsecaseFactory } from './index'
+import { FindExercisesByBodyPartUsecase } from '@domain/usecases/exercises/find-exercises-by-body-part.usecase'
 import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
 import { ExerciseRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
+import { makeFindExercisesByBodyPartUsecaseFactory } from './index'
 
 describe('makeFindExercisesByBodyPartUsecaseFactory', () => {
   it('should create an instance of FindExercisesByBodyPartUsecase', () => {

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.7](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.7) (2023-01-19)
+
+
+### Performance Improvements
+
+* **directory:** improve the structure of the domain folder ([e6cefeb](https://github.com/thiagoadsix/pump/commit/e6cefebdbcbc290713df9afb504d159c321c7f87))
+
+
+### Others
+
+* **standard-version:** add custom types to standard-version ([08cb0ab](https://github.com/thiagoadsix/pump/commit/08cb0ab2d3462efeaea1b0684e253ff3cd021629))
+
 ### [1.1.6](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.6) (2023-01-19)
 
 

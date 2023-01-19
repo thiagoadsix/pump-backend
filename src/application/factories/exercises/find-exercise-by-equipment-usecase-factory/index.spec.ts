@@ -1,4 +1,4 @@
-import { FindExercisesByEquipmentUsecase } from '@domain/exercises/usecases/find-exercises-by-equipment.usecase'
+import { FindExercisesByEquipmentUsecase } from '@domain/usecases/exercises/find-exercises-by-equipment.usecase'
 import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
 import { ExerciseRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
 import { makeFindExercisesByEquipmentUsecaseFactory } from './index'

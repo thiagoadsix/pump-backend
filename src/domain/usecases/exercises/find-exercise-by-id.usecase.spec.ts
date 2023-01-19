@@ -1,4 +1,4 @@
-import { ExerciseRepositoryMock } from '../../workouts/mocks/exercise.repository.mock'
+import { ExerciseRepositoryMock } from '../../usecases/mocks/exercise.repository.mock'
 import { ExerciseNotFoundByIdException } from '../../exceptions/exercises/exercise-not-found-by-id.exception'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 import { FindExerciseByIdUsecase } from './find-exercise-by-id.usecase'
