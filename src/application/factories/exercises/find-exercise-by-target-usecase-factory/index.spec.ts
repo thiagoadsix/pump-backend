@@ -1,7 +1,7 @@
-import { FindExercisesByTargetUsecase } from '../../../../domain/exercises/usecases/find-exercises-by-target.usecase'
+import { FindExercisesByTargetUsecase } from '@domain/exercises/usecases/find-exercises-by-target.usecase'
+import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
+import { ExerciseRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
 import { makeFindExercisesByTargetUsecaseFactory } from './index'
-import { DynamoClient, DynamoClientStageType } from '../../../../infrastructure/databases/dynamo/dynamo-client'
-import { ExerciseRepositoryDynamo } from '../../../../infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
 
 describe('makeFindExercisesByTargetUsecaseFactory', () => {
   it('should create an instance of FindExercisesByTargetUsecase', () => {

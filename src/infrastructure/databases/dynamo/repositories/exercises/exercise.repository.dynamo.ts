@@ -1,6 +1,6 @@
-import { TargetTypeAggregate, BodyPartTypeAggregate, EquipmentTypeAggregate } from '../../../../../domain/aggregates'
-import { Exercise } from '../../../../../domain/entities/exercise'
-import { ExerciseRepository } from '../../../../../domain/protocols/repositories/exercise.repository'
+import { TargetTypeAggregate, BodyPartTypeAggregate, EquipmentTypeAggregate } from '@domain/aggregates'
+import { Exercise } from '@domain/entities/exercise'
+import { ExerciseRepository } from '@domain/protocols/repositories/exercise.repository'
 import { DynamoClient } from '../../dynamo-client'
 
 export class ExerciseRepositoryDynamo implements ExerciseRepository {

@@ -1,8 +1,8 @@
+import { FindWorkoutByIdUsecase } from '@domain/workouts/usecases/find-workout-by-id.usecase'
+import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
+import { WorkoutsRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
+import { ExerciseRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
 import { makeFindWorkoutByIdUsecaseFactory } from './index'
-import { DynamoClient, DynamoClientStageType } from '../../../../infrastructure/databases/dynamo/dynamo-client'
-import { WorkoutsRepositoryDynamo } from '../../../../infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
-import { FindWorkoutByIdUsecase } from '../../../../domain/workouts/usecases/find-workout-by-id.usecase'
-import { ExerciseRepositoryDynamo } from '../../../../infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
 
 describe('makeFindWorkoutByIdUsecaseFactory', () => {
   it('should create an instance of FindWorkoutByIdUsecase', () => {

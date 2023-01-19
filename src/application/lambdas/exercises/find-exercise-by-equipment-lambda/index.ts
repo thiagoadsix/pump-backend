@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-import { EquipmentTypeAggregate } from '../../../../domain/aggregates'
+import { EquipmentTypeAggregate } from '@domain/aggregates'
 import { makeFindExercisesByEquipmentUsecaseFactory } from '../../../factories/exercises/find-exercise-by-equipment-usecase-factory'
 
 export async function handler (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {

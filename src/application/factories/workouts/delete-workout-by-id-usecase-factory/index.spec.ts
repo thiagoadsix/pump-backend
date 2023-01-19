@@ -1,7 +1,7 @@
+import { DeleteWorkoutByIdUsecase } from '@domain/workouts/usecases/delete-workout-by-id.usecase'
+import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
+import { WorkoutsRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
 import { makeDeleteWorkoutByIdUsecaseFactory } from './index'
-import { DynamoClient, DynamoClientStageType } from '../../../../infrastructure/databases/dynamo/dynamo-client'
-import { WorkoutsRepositoryDynamo } from '../../../../infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
-import { DeleteWorkoutByIdUsecase } from '../../../../domain/workouts/usecases/delete-workout-by-id.usecase'
 
 describe('makeDeleteWorkoutByIdUsecaseFactory', () => {
   it('should create an instance of DeleteWorkoutByIdUsecase', () => {

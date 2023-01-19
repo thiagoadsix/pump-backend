@@ -1,8 +1,7 @@
 {
   "name": "pump",
-  "version": "1.1.5",
-  "description": "Serverless aws-nodejs-typescript template",
-  "main": "serverless.ts",
+  "version": "1.1.6",
+  "description": "Pump backend",
   "scripts": {
     "prettier": "prettier 'src/**/*.ts'",
     "prettier:fix": "prettier --write 'src/**/*.ts'",
@@ -16,7 +15,7 @@
     "release": "standard-version"
   },
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=16x"
   },
   "dependencies": {
     "@middy/core": "^3.4.0",

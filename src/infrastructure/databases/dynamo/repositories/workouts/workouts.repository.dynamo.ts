@@ -1,5 +1,5 @@
-import { Workout } from '../../../../../domain/entities/workout'
-import { WorkoutRepository } from '../../../../../domain/protocols/repositories/workout.repository'
+import { Workout } from '@domain/entities/workout'
+import { WorkoutRepository } from '@domain/protocols/repositories/workout.repository'
 import { DynamoClient } from '../../dynamo-client'
 
 export class WorkoutsRepositoryDynamo implements WorkoutRepository {

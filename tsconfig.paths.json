@@ -2,12 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@functions/*": ["src/functions/*"],
-      "@services/*": ["src/services/*"],
-      "@gateways/*": ["src/gateways/*"],
-      "@contracts/*": ["src/contracts/*"],
-      "@envs/*": ["src/envs/*"],
-      "@libs/*": ["src/libs/*"]
+      "@domain/*": ["src/domain/*"],
+      "@application/*": ["src/application/*"],
+      "@infrastructure/*": ["src/infrastructure/*"]
     }
   }
 }
