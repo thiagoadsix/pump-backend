@@ -1,4 +1,4 @@
-import { AddExerciseToWorkoutListUsecase } from '@domain/workouts/usecases/add-exercise-to-workout-list.usecase'
+import { AddExerciseToWorkoutListUsecase } from '@domain/usecases/workouts/add-exercise-to-workout-list.usecase'
 import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
 import { WorkoutsRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
 import { makeAddExerciseToWorkoutListUsecaseFactory } from './index'

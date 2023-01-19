@@ -1,5 +1,5 @@
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
-import { ExerciseRepositoryMock } from '../../workouts/mocks/exercise.repository.mock'
+import { ExerciseRepositoryMock } from '../../usecases/mocks/exercise.repository.mock'
 import { FindAllExercisesUsecase } from './find-all-exercises.usecase'
 
 describe('FindAllExercisesUsecase', () => {

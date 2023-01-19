@@ -2,7 +2,7 @@ import { ExerciseNotFoundByBodyPartException } from '../../exceptions/exercises/
 import { BodyPartTypeAggregate } from '../../aggregates'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 import { FindExercisesByBodyPartUsecase } from './find-exercises-by-body-part.usecase'
-import { ExerciseRepositoryMock } from '../../workouts/mocks/exercise.repository.mock'
+import { ExerciseRepositoryMock } from '../../usecases/mocks/exercise.repository.mock'
 
 describe('FindExercisesByBodyPartUsecase', () => {
   let exerciseRepository: ExerciseRepository

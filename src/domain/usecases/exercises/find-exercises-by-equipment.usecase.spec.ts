@@ -2,7 +2,7 @@ import { ExerciseNotFoundByEquipmentException } from '../../exceptions/exercises
 import { EquipmentTypeAggregate } from '../../aggregates'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 import { FindExercisesByEquipmentUsecase } from './find-exercises-by-equipment.usecase'
-import { ExerciseRepositoryMock } from '../..//workouts/mocks/exercise.repository.mock'
+import { ExerciseRepositoryMock } from '../../usecases/mocks/exercise.repository.mock'
 
 describe('FindExercisesByEquipmentUsecase', () => {
   let exerciseRepository: ExerciseRepository

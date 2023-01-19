@@ -1,4 +1,4 @@
-import { DeleteWorkoutByIdUsecase } from '@domain/workouts/usecases/delete-workout-by-id.usecase'
+import { DeleteWorkoutByIdUsecase } from '@domain/usecases/workouts/delete-workout-by-id.usecase'
 import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
 import { WorkoutsRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
 import { makeDeleteWorkoutByIdUsecaseFactory } from './index'

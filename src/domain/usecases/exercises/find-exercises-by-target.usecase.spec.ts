@@ -1,4 +1,4 @@
-import { ExerciseRepositoryMock } from '../../workouts/mocks/exercise.repository.mock'
+import { ExerciseRepositoryMock } from '../../usecases/mocks/exercise.repository.mock'
 import { TargetTypeAggregate } from '../../aggregates'
 import { ExerciseNotFoundByTargetException } from '../../exceptions/exercises/exercise-not-found-by-target.exception'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
