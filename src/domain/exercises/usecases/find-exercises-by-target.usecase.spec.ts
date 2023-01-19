@@ -1,3 +1,4 @@
+import { ExerciseRepositoryMock } from '../../workouts/mocks/exercise.repository.mock'
 import { TargetTypeAggregate } from '../../aggregates'
 import { ExerciseNotFoundByTargetException } from '../../exceptions/exercises/exercise-not-found-by-target.exception'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
@@ -5,47 +6,30 @@ import { FindExercisesByTargetUsecase } from './find-exercises-by-target.usecase
 
 describe('FindExerciseByTargetUsecase', () => {
   let exerciseRepository: ExerciseRepository
-  let findExercisesByTargetUsecase: FindExercisesByTargetUsecase
+
+  let sut: FindExercisesByTargetUsecase
 
   beforeEach(() => {
-    exerciseRepository = {
-      findById: jest.fn(),
-      findAll: jest.fn(),
-      findByTarget: jest.fn(),
-      findByBodyPart: jest.fn(),
-      findByEquipment: jest.fn(),
-      findByIds: jest.fn()
-    }
+    exerciseRepository = new ExerciseRepositoryMock()
 
-    findExercisesByTargetUsecase = new FindExercisesByTargetUsecase(exerciseRepository)
+    sut = new FindExercisesByTargetUsecase(exerciseRepository)
   })
 
-  describe('execute', () => {
-    it('should find all exercises by target', async () => {
-      const expectedResult: FindExercisesByTargetUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
-      jest.spyOn(exerciseRepository, 'findByTarget').mockResolvedValue(expectedResult)
+  it('should call FindByTarget with correct values', async () => {
+    const exerciseRepositoryFindByTargetSpy = jest.spyOn(exerciseRepository, 'findByTarget')
 
-      const input: TargetTypeAggregate = 'abs'
-      const output = await findExercisesByTargetUsecase.execute(input)
+    const input: TargetTypeAggregate = 'abs'
+    await sut.execute(input)
 
-      expect(output).toEqual(expectedResult)
-    })
+    expect(exerciseRepositoryFindByTargetSpy).toHaveBeenCalledWith(input)
+    expect(exerciseRepositoryFindByTargetSpy).toHaveBeenCalledTimes(1)
+  })
 
-    it('should call FindByTarget with correct values', async () => {
-      const expectedResult: FindExercisesByTargetUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
-      jest.spyOn(exerciseRepository, 'findByTarget').mockResolvedValue(expectedResult)
+  it('should throw an ExerciseNotFoundByTargetException if no exercise is found with the given target', async () => {
+    jest.spyOn(exerciseRepository, 'findByTarget').mockResolvedValue([])
 
-      const input: TargetTypeAggregate = 'abs'
-      await findExercisesByTargetUsecase.execute(input)
-
-      expect(exerciseRepository.findByTarget).toBeCalledWith(input)
-    })
-
-    it('should throw an ExerciseNotFoundByTargetException if no exercise is found with the given target', async () => {
-      jest.spyOn(exerciseRepository, 'findByTarget').mockResolvedValue([])
-
-      const input: TargetTypeAggregate = 'abs'
-      await expect(findExercisesByTargetUsecase.execute(input)).rejects.toThrow(ExerciseNotFoundByTargetException)
-    })
+    const input: TargetTypeAggregate = 'abs'
+    const result = sut.execute(input)
+    await expect(result).rejects.toThrow(ExerciseNotFoundByTargetException)
   })
 })

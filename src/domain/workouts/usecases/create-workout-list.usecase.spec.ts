@@ -2,43 +2,49 @@ import { CreateWorkoutListUsecase } from './create-workout-list.usecase'
 import { UUIDService } from '../../protocols/services/uuid.service'
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 import { Workout } from '../../entities/workout'
+import { WorkoutRepositoryMock } from '../mocks/workout.repository.mock'
+import { UUIDServiceMock } from '../mocks/uuid.service.mock'
+import { dateMock } from '../mocks/date.mock'
 
 describe('CreateWorkoutListUsecase', () => {
-  let usecase: CreateWorkoutListUsecase
   let uuidService: UUIDService
   let workoutRepository: WorkoutRepository
 
+  let input: CreateWorkoutListUsecase.Input
+  let sut: CreateWorkoutListUsecase
+
   beforeEach(() => {
-    uuidService = {
-      v4: jest.fn().mockResolvedValue('mock-id')
+    dateMock()
+
+    input = {
+      title: 'Workout Title Test',
+      userId: 'user-id-mock',
+      exerciseIds: ['0001', '0002']
     }
-    workoutRepository = {
-      findAll: jest.fn(),
-      save: jest.fn(),
-      findById: jest.fn(),
-      delete: jest.fn(),
-      addExercise: jest.fn()
-    }
-    usecase = new CreateWorkoutListUsecase(uuidService, workoutRepository)
+
+    uuidService = new UUIDServiceMock()
+    workoutRepository = new WorkoutRepositoryMock()
+    sut = new CreateWorkoutListUsecase(uuidService, workoutRepository)
   })
 
-  it('creates a new workout and saves it to the repository', async () => {
-    const fixedDate = new Date('2023-01-09T16:23:27.190Z')
-    jest.spyOn(global, 'Date').mockImplementation(() => fixedDate)
+  it('should call UUIDService.v4 one time', async () => {
+    const uuidServiceV4Spy = jest.spyOn(uuidService, 'v4')
+    await sut.execute(input)
+    expect(uuidServiceV4Spy).toHaveBeenCalledTimes(1)
+  })
 
-    const input = {
-      userId: 'user-id',
-      exerciseIds: [],
-      title: 'Workout Title'
+  it('should call WorkoutRepository.save with correct values', async () => {
+    const workoutRepositorySaveSpy = jest.spyOn(workoutRepository, 'save')
+    const workout: Workout = {
+      id: await uuidService.v4(),
+      title: 'Workout Title Test',
+      userId: 'user-id-mock',
+      exerciseIds: ['0001', '0002'],
+      createdAt: new Date().toISOString()
     }
-    const expectedWorkout: Workout = {
-      id: 'mock-id',
-      title: 'Workout Title',
-      exerciseIds: [],
-      userId: 'user-id',
-      createdAt: '2023-01-09T16:23:27.190Z'
-    }
-    await usecase.execute(input)
-    expect(workoutRepository.save).toHaveBeenCalledWith(expectedWorkout)
+
+    await sut.execute(input)
+    expect(workoutRepositorySaveSpy).toHaveBeenCalledTimes(1)
+    expect(workoutRepositorySaveSpy).toHaveBeenCalledWith(workout)
   })
 })

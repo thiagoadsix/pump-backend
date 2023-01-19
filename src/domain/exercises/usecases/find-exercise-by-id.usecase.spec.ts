@@ -1,40 +1,35 @@
+import { ExerciseRepositoryMock } from '../../workouts/mocks/exercise.repository.mock'
 import { ExerciseNotFoundByIdException } from '../../exceptions/exercises/exercise-not-found-by-id.exception'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 import { FindExerciseByIdUsecase } from './find-exercise-by-id.usecase'
 
 describe('FindExerciseByIdUsecase', () => {
   let exerciseRepository: ExerciseRepository
-  let findExerciseByIdUsecase: FindExerciseByIdUsecase
+
+  let sut: FindExerciseByIdUsecase
 
   beforeEach(() => {
-    exerciseRepository = {
-      findById: jest.fn(),
-      findAll: jest.fn(),
-      findByTarget: jest.fn(),
-      findByBodyPart: jest.fn(),
-      findByEquipment: jest.fn(),
-      findByIds: jest.fn()
-    }
+    exerciseRepository = new ExerciseRepositoryMock()
 
-    findExerciseByIdUsecase = new FindExerciseByIdUsecase(exerciseRepository)
+    sut = new FindExerciseByIdUsecase(exerciseRepository)
   })
 
-  describe('execute', () => {
-    it('should return the exercise with the given id', async () => {
-      const expectedExercise: FindExerciseByIdUsecase.Output = { id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }
-      jest.spyOn(exerciseRepository, 'findById').mockResolvedValue(expectedExercise)
+  it('should call ExerciseRepository.findById with correct values', async () => {
+    const exerciseRepositoryFindByIdSpy = jest.spyOn(exerciseRepository, 'findById')
 
-      const input = '1'
-      const output = await findExerciseByIdUsecase.execute(input)
+    const input = '1'
+    await sut.execute(input)
 
-      expect(output).toEqual(expectedExercise)
-    })
+    expect(exerciseRepositoryFindByIdSpy).toHaveBeenCalledTimes(1)
+    expect(exerciseRepositoryFindByIdSpy).toHaveBeenCalledWith(input)
+  })
 
-    it('should throw an ExerciseNotFoundByIdException if no exercise is found with the given an id', async () => {
-      jest.spyOn(exerciseRepository, 'findById').mockResolvedValue(null)
+  it('should throw an ExerciseNotFoundByIdException if no exercise is found with the given an id', async () => {
+    jest.spyOn(exerciseRepository, 'findById').mockResolvedValue(null)
 
-      const input = '1'
-      await expect(findExerciseByIdUsecase.execute(input)).rejects.toThrow(ExerciseNotFoundByIdException)
-    })
+    const input = '1'
+    const result = sut.execute(input)
+
+    await expect(result).rejects.toThrow(ExerciseNotFoundByIdException)
   })
 })

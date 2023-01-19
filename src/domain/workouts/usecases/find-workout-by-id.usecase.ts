@@ -20,18 +20,24 @@ export class FindWorkoutByIdUsecase {
       throw new WorkoutNotFoundByIdException(id)
     }
 
-    const exercises = await this.exerciseRepository.findByIds(workout.exerciseIds)
+    if (workout.exerciseIds != null) {
+      const exercises = await this.exerciseRepository.findByIds(workout.exerciseIds)
+      return {
+        ...workout,
+        exercises
+      }
+    }
 
     return {
       ...workout,
-      exercises
+      exercises: []
     }
   }
 }
 
 export namespace FindWorkoutByIdUsecase {
   interface WorkoutWithExercise extends Workout {
-    exercises: Exercise[]
+    exercises?: Exercise[]
   }
 
   export type Output = WorkoutWithExercise

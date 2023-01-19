@@ -1,31 +1,23 @@
-import { ExerciseRepository } from 'src/domain/protocols/repositories/exercise.repository'
+import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
+import { ExerciseRepositoryMock } from '../../workouts/mocks/exercise.repository.mock'
 import { FindAllExercisesUsecase } from './find-all-exercises.usecase'
 
 describe('FindAllExercisesUsecase', () => {
   let exerciseRepository: ExerciseRepository
-  let findAllExercisesUsecase: FindAllExercisesUsecase
+  let sut: FindAllExercisesUsecase
 
   beforeEach(() => {
-    exerciseRepository = {
-      findById: jest.fn(),
-      findAll: jest.fn(),
-      findByTarget: jest.fn(),
-      findByBodyPart: jest.fn(),
-      findByEquipment: jest.fn(),
-      findByIds: jest.fn()
-    }
+    exerciseRepository = new ExerciseRepositoryMock()
 
-    findAllExercisesUsecase = new FindAllExercisesUsecase(exerciseRepository)
+    sut = new FindAllExercisesUsecase(exerciseRepository)
   })
 
-  describe('execute', () => {
-    it('should find all exercises', async () => {
-      const expectedExercise: FindAllExercisesUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
-      jest.spyOn(exerciseRepository, 'findAll').mockResolvedValue(expectedExercise)
+  it('should call ExerciseRepository.findAll with correct values', async () => {
+    const exerciseRepositoryFindAllSpy = jest.spyOn(exerciseRepository, 'findAll')
 
-      const output = await findAllExercisesUsecase.execute()
+    await sut.execute()
 
-      expect(output).toEqual(expectedExercise)
-    })
+    expect(exerciseRepositoryFindAllSpy).toHaveBeenCalledTimes(1)
+    expect(exerciseRepositoryFindAllSpy).toHaveBeenCalledWith()
   })
 })

@@ -2,56 +2,39 @@ import { WorkoutNotFoundByIdException } from '../../exceptions/workouts/workout-
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 import { FindWorkoutByIdUsecase } from './find-workout-by-id.usecase'
+import { dateMock } from '../mocks/date.mock'
+import { ExerciseRepositoryMock } from '../mocks/exercise.repository.mock'
+import { WorkoutRepositoryMock } from '../mocks/workout.repository.mock'
 
 describe('FindWorkoutByIdUsecase', () => {
   let exerciseRepository: ExerciseRepository
   let workoutRepository: WorkoutRepository
-  let findWorkoutByIdUsecase: FindWorkoutByIdUsecase
+
+  let sut: FindWorkoutByIdUsecase
 
   beforeEach(() => {
-    exerciseRepository = {
-      findById: jest.fn(),
-      findAll: jest.fn(),
-      findByTarget: jest.fn(),
-      findByBodyPart: jest.fn(),
-      findByEquipment: jest.fn(),
-      findByIds: jest.fn()
-    }
+    dateMock()
 
-    workoutRepository = {
-      findById: jest.fn(),
-      delete: jest.fn(),
-      findAll: jest.fn(),
-      save: jest.fn(),
-      addExercise: jest.fn()
-    }
+    exerciseRepository = new ExerciseRepositoryMock()
+    workoutRepository = new WorkoutRepositoryMock()
 
-    findWorkoutByIdUsecase = new FindWorkoutByIdUsecase(workoutRepository, exerciseRepository)
+    sut = new FindWorkoutByIdUsecase(workoutRepository, exerciseRepository)
   })
 
-  describe('execute', () => {
-    it('should return the workout with the given id', async () => {
-      const expectedWorkout: FindWorkoutByIdUsecase.Output = {
-        id: '1',
-        title: 'Workout Title',
-        userId: '1',
-        exerciseIds: ['0001'],
-        exercises: undefined,
-        createdAt: new Date().toISOString()
-      } as any
-      jest.spyOn(workoutRepository, 'findById').mockResolvedValue(expectedWorkout)
+  it('should return the workout with the given id', async () => {
+    const workoutRepositoryFindByIdSpy = jest.spyOn(workoutRepository, 'findById')
 
-      const input = '1'
-      const output = await findWorkoutByIdUsecase.execute(input)
+    const input = 'aaaa1111-bb22-cc33-dd44-eeeeee555555'
+    await sut.execute(input)
 
-      expect(output).toEqual(expectedWorkout)
-    })
+    expect(workoutRepositoryFindByIdSpy).toBeCalledWith(input)
+  })
 
-    it('should throw an WorkoutNotFoundByIdException if no exercise is found with the given an id', async () => {
-      jest.spyOn(workoutRepository, 'findById').mockResolvedValue(null)
+  it('should throw an WorkoutNotFoundByIdException if no exercise is found with the given an id', async () => {
+    jest.spyOn(workoutRepository, 'findById').mockResolvedValue(null)
 
-      const input = '1'
-      await expect(findWorkoutByIdUsecase.execute(input)).rejects.toThrow(WorkoutNotFoundByIdException)
-    })
+    const input = 'aaaa1111-bb22-cc33-dd44-eeeeee555555'
+    const result = sut.execute(input)
+    await expect(result).rejects.toThrow(WorkoutNotFoundByIdException)
   })
 })

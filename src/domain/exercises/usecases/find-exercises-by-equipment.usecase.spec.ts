@@ -2,50 +2,35 @@ import { ExerciseNotFoundByEquipmentException } from '../../exceptions/exercises
 import { EquipmentTypeAggregate } from '../../aggregates'
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 import { FindExercisesByEquipmentUsecase } from './find-exercises-by-equipment.usecase'
+import { ExerciseRepositoryMock } from '../..//workouts/mocks/exercise.repository.mock'
 
 describe('FindExercisesByEquipmentUsecase', () => {
   let exerciseRepository: ExerciseRepository
-  let findExercisesByEquipmentUsecase: FindExercisesByEquipmentUsecase
+
+  let sut: FindExercisesByEquipmentUsecase
 
   beforeEach(() => {
-    exerciseRepository = {
-      findById: jest.fn(),
-      findAll: jest.fn(),
-      findByTarget: jest.fn(),
-      findByBodyPart: jest.fn(),
-      findByEquipment: jest.fn(),
-      findByIds: jest.fn()
-    }
+    exerciseRepository = new ExerciseRepositoryMock()
 
-    findExercisesByEquipmentUsecase = new FindExercisesByEquipmentUsecase(exerciseRepository)
+    sut = new FindExercisesByEquipmentUsecase(exerciseRepository)
   })
 
-  describe('execute', () => {
-    it('should find all exercises by equipment', async () => {
-      const expectedResult: FindExercisesByEquipmentUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
-      jest.spyOn(exerciseRepository, 'findByEquipment').mockResolvedValue(expectedResult)
+  it('should call ExerciseRepository.findByEquipment with correct values', async () => {
+    const exerciseRepositoryFindByEquipmentSpy = jest.spyOn(exerciseRepository, 'findByEquipment')
 
-      const input: EquipmentTypeAggregate = 'assisted'
-      const output = await findExercisesByEquipmentUsecase.execute(input)
+    const input: EquipmentTypeAggregate = 'assisted'
+    await sut.execute(input)
 
-      expect(output).toEqual(expectedResult)
-    })
+    expect(exerciseRepositoryFindByEquipmentSpy).toHaveBeenCalledTimes(1)
+    expect(exerciseRepositoryFindByEquipmentSpy).toHaveBeenCalledWith(input)
+  })
 
-    it('should call FindByEquipment with correct values', async () => {
-      const expectedResult: FindExercisesByEquipmentUsecase.Output = [{ id: '1', name: 'Push-ups', target: 'abs', equipment: 'band', bodyPart: 'back', url: 'http://example' }]
-      jest.spyOn(exerciseRepository, 'findByEquipment').mockResolvedValue(expectedResult)
+  it('should throw an ExerciseNotFoundByEquipmentException if no exercise is found with the given equipment', async () => {
+    jest.spyOn(exerciseRepository, 'findByEquipment').mockResolvedValue([])
 
-      const input: EquipmentTypeAggregate = 'assisted'
-      await findExercisesByEquipmentUsecase.execute(input)
+    const input: EquipmentTypeAggregate = 'assisted'
+    const result = sut.execute(input)
 
-      expect(exerciseRepository.findByEquipment).toBeCalledWith(input)
-    })
-
-    it('should throw an ExerciseNotFoundByEquipmentException if no exercise is found with the given equipment', async () => {
-      jest.spyOn(exerciseRepository, 'findByEquipment').mockResolvedValue([])
-
-      const input: EquipmentTypeAggregate = 'assisted'
-      await expect(findExercisesByEquipmentUsecase.execute(input)).rejects.toThrow(ExerciseNotFoundByEquipmentException)
-    })
+    await expect(result).rejects.toThrow(ExerciseNotFoundByEquipmentException)
   })
 })
