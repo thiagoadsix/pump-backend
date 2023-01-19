@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.8](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.8) (2023-01-19)
+
+
+### Performance Improvements
+
+* **environment:** add scripts to create table and bucket locally ([5336611](https://github.com/thiagoadsix/pump/commit/53366116d2df73fb638909cd5f6d271b2ba2d493))
+
+
+### Others
+
+* **standard-version:** add custom types to standard-version ([08cb0ab](https://github.com/thiagoadsix/pump/commit/08cb0ab2d3462efeaea1b0684e253ff3cd021629))
+
 ### [1.1.7](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.7) (2023-01-19)
 
 
