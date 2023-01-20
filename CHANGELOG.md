@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.10](https://github.com/thiagoadsix/pump/compare/v1.1.9...v1.1.10) (2023-01-20)
+
+
+### Code Refactoring
+
+* **workout:** fix the fuction to add new exercise to woekout list ([c12eaf9](https://github.com/thiagoadsix/pump/commit/c12eaf908c29af33e65929abb829de2ce103aff4))
+
 ### [1.1.9](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.9) (2023-01-20)
 
 
