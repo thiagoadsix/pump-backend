@@ -103,8 +103,8 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
-    'find-all-workouts': {
-      handler: './src/application/lambdas/workouts/find-all-workouts-lambda.handler',
+    'find-all-workouts-by-user-id': {
+      handler: './src/application/lambdas/workouts/find-all-workouts-by-user-id-lambda.handler',
       timeout: 30,
       events: [
         {
