@@ -1,6 +1,6 @@
 import { UUIDService } from '../../protocols/services/uuid.service'
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
-import { Workout } from '../../entities/workout'
+import { Sets, Workout } from '../../entities/workout'
 
 export class CreateWorkoutListUsecase {
   constructor (private readonly uuidService: UUIDService, private readonly workoutRepository: WorkoutRepository) {
@@ -11,9 +11,9 @@ export class CreateWorkoutListUsecase {
   async execute (input: CreateWorkoutListUsecase.Input): Promise<void> {
     const workout: Workout = {
       id: await this.uuidService.v4(),
-      title: input.title,
-      exerciseIds: input.exerciseIds,
       userId: input.userId,
+      name: input.name,
+      sets: input.sets,
       createdAt: new Date().toISOString()
     }
 
@@ -24,7 +24,7 @@ export class CreateWorkoutListUsecase {
 export namespace CreateWorkoutListUsecase {
   export interface Input {
     userId: string
-    exerciseIds?: string[]
-    title: string
+    name: string
+    sets: Sets[]
   }
 }

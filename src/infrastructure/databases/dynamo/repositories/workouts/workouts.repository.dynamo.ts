@@ -81,9 +81,9 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     return {
       id: item.id,
       userId: item.userId,
-      title: item.title,
+      name: item.name,
+      sets: item.sets,
       createdAt: item.createdAt,
-      exerciseIds: item.exerciseIds,
       updatedAt: item?.updatedAt
     }
   }
