@@ -16,7 +16,16 @@ export class AddExerciseToWorkoutListUsecase {
       throw new WorkoutNotFoundByIdAndUserIdException(input.id, input.userId)
     }
 
-    await this.workoutRepository.addExercise({ ...workout, updatedAt: new Date().toISOString() })
+    const updatedAt = new Date().toISOString()
+
+    await this.workoutRepository.addExercise({
+      id: input.id,
+      userId: input.userId,
+      sets: input.sets,
+      updatedAt,
+      name: workout.name,
+      createdAt: workout.createdAt
+    })
   }
 }
 

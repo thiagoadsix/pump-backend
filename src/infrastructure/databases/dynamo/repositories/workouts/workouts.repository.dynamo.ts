@@ -11,7 +11,7 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     const params: AWS.DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: String(process.env.WORKOUTS_TABLE_NAME),
       Key: { id: input.id, userId: input.userId },
-      UpdateExpression: 'SET #sets = list_append(if_not_exists(#sets, :empty_list), :sets), updatedAt = :updatedAt',
+      UpdateExpression: 'set #sets = list_append(if_not_exists(#sets, :empty_list), :sets), updatedAt = :updatedAt',
       ExpressionAttributeNames: {
         '#sets': 'sets'
       },
@@ -20,8 +20,9 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
         ':empty_list': [],
         ':updatedAt': input.updatedAt
       },
-      ReturnValues: 'ALL_NEW'
+      ReturnValues: 'UPDATED_NEW'
     }
+
     await this.client.update(params)
   }
 
