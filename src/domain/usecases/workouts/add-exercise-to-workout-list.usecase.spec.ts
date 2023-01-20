@@ -32,12 +32,12 @@ describe('AddExerciseToWorkoutListUsecase', () => {
     const id = 'aaaa1111-bb22-cc33-dd44-eeeeee555555'
     const userId = 'zzzz1111-xx22-tt33-pp44-yyyyyy555555'
 
-    const workoutRepositoryFindByIdSpy = jest.spyOn(workoutRepository, 'findById')
+    const workoutRepositoryFindByIdAndUserIdSpy = jest.spyOn(workoutRepository, 'findByIdAndUserId')
 
     await usecase.execute(input)
 
-    expect(workoutRepositoryFindByIdSpy).toHaveBeenCalledWith(id, userId)
-    expect(workoutRepositoryFindByIdSpy).toHaveBeenCalledTimes(1)
+    expect(workoutRepositoryFindByIdAndUserIdSpy).toHaveBeenCalledWith(id, userId)
+    expect(workoutRepositoryFindByIdAndUserIdSpy).toHaveBeenCalledTimes(1)
   })
 
   test('should call workoutRepository.addExercise with the provided ids', async () => {
