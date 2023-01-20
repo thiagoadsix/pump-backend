@@ -10,7 +10,6 @@ export class Workout {
   userId: string
   name: string
   sets: Sets[]
-
   createdAt: string
   updatedAt?: string
 

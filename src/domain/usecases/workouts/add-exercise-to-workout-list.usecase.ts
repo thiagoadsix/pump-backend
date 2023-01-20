@@ -10,7 +10,7 @@ export class AddExerciseToWorkoutListUsecase {
   }
 
   async execute (input: AddExerciseToWorkoutListUsecase.Input): Promise<void> {
-    const workout = await this.workoutRepository.findById(input.id, input.userId)
+    const workout = await this.workoutRepository.findByIdAndUserId(input.id, input.userId)
 
     if (workout == null) {
       throw new WorkoutNotFoundByIdAndUserIdException(input.id, input.userId)

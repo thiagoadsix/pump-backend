@@ -115,14 +115,14 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
-    'find-workout-by-id': {
-      handler: './src/application/lambdas/workouts/find-workout-by-id-lambda.handler',
+    'find-workout-by-id-and-user-id': {
+      handler: './src/application/lambdas/workouts/find-workout-by-id-and-user-id-lambda.handler',
       timeout: 30,
       events: [
         {
           http: {
             method: 'get',
-            path: 'workouts/{id}'
+            path: 'workouts/{id}/user/{userId}'
           }
         }
       ]

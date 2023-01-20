@@ -32,24 +32,19 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     })
   }
 
-  async findById (id: string): Promise<Workout | null> {
-    const result = await this.client.query({
+  async findByIdAndUserId (id: string, userId: string): Promise<Workout | null> {
+    const params = {
       TableName: String(process.env.WORKOUTS_TABLE_NAME),
-      KeyConditionExpression: '#id = :id',
-      ExpressionAttributeNames: {
-        '#id': 'id'
-      },
-      ExpressionAttributeValues: {
-        ':id': id
-      },
-      Limit: 1
-    }).then(item => item.Items?.shift())
-
-    if (result == null) {
-      return null
+      Key: { id, userId }
     }
 
-    return this.fromDynamoDBItem(result)
+    const result = await this.client.get(params)
+
+    if (result.Item != null) {
+      return this.fromDynamoDBItem(result.Item)
+    }
+
+    return null
   }
 
   async findAll (userId: string): Promise<Workout[]> {
