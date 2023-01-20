@@ -1,13 +1,13 @@
-import { FindAllWorkoutsUsecase } from '@domain/usecases/workouts/find-all-workouts.usecase'
+import { FindWorkoutByIdAndUserIdUsecase } from '@domain/usecases/workouts/find-workout-by-id-and-user-id.usecase'
 import { DynamoClient, DynamoClientStageType } from '@infrastructure/databases/dynamo/dynamo-client'
 import { WorkoutsRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/workouts/workouts.repository.dynamo'
 import { ExerciseRepositoryDynamo } from '@infrastructure/databases/dynamo/repositories/exercises/exercise.repository.dynamo'
-import { makeFindAllWorkoutsUsecaseFactory } from './index'
+import { makeFindWorkoutByIdAndUserIdUsecaseFactory } from './index'
 
-describe('makeFindAllWorkoutsUsecaseFactory', () => {
-  it('should create an instance of FindAllWorkoutsUsecase', () => {
-    const findAllWorkoutsUsecase = makeFindAllWorkoutsUsecaseFactory()
-    expect(findAllWorkoutsUsecase).toBeInstanceOf(FindAllWorkoutsUsecase)
+describe('makeFindWorkoutByIdAndUserIdUsecaseFactory', () => {
+  it('should create an instance of FindWorkoutByIdAndUserIdUsecase', () => {
+    const findWorkoutByIdAndUserIdUsecase = makeFindWorkoutByIdAndUserIdUsecaseFactory()
+    expect(findWorkoutByIdAndUserIdUsecase).toBeInstanceOf(FindWorkoutByIdAndUserIdUsecase)
   })
 
   it('should create an instance of DynamoClient with the correct stage', () => {
@@ -15,7 +15,7 @@ describe('makeFindAllWorkoutsUsecaseFactory', () => {
     const dynamoClient = new DynamoClient(String(process.env.STAGE) as DynamoClientStageType)
     const workoutRepository = new WorkoutsRepositoryDynamo(dynamoClient)
     const exerciseRepository = new ExerciseRepositoryDynamo(dynamoClient)
-    const findAllWorkoutsUsecase = new FindAllWorkoutsUsecase(workoutRepository, exerciseRepository)
-    expect(findAllWorkoutsUsecase).toBeInstanceOf(FindAllWorkoutsUsecase)
+    const findWorkoutByIdAndUserIdUsecase = new FindWorkoutByIdAndUserIdUsecase(workoutRepository, exerciseRepository)
+    expect(findWorkoutByIdAndUserIdUsecase).toBeInstanceOf(FindWorkoutByIdAndUserIdUsecase)
   })
 })

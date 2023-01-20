@@ -6,17 +6,24 @@ describe('Workout', () => {
     jest.spyOn(global, 'Date').mockImplementation(() => fixedDate)
 
     const id = 'uuid'
-    const exerciseIds = ['0001']
+    const sets = [
+      {
+        id: '0001',
+        repetitions: 10,
+        series: 3,
+        weight: 10
+      }
+    ]
     const userId = 'uuid'
-    const title = 'Workout Title'
+    const name = 'Workout Name'
     const createdAt = '2023-01-09T16:23:27.190Z'
 
-    const workout = new Workout(id, userId, exerciseIds, title, createdAt)
+    const workout = new Workout(id, userId, sets, name, createdAt)
 
     expect(workout.id).toBe('uuid')
-    expect(workout.exerciseIds).toContainEqual('0001')
+    expect(workout.sets[0]).toHaveProperty('weight')
     expect(workout.userId).toBe('uuid')
-    expect(workout.title).toBe('Workout Title')
+    expect(workout.name).toBe('Workout Name')
     expect(workout.createdAt).toBe(new Date().toISOString())
   })
 })

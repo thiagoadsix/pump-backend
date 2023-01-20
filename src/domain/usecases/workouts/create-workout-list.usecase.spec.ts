@@ -17,9 +17,14 @@ describe('CreateWorkoutListUsecase', () => {
     dateMock()
 
     input = {
-      title: 'Workout Title Test',
+      name: 'Workout Name Test',
       userId: 'user-id-mock',
-      exerciseIds: ['0001', '0002']
+      sets: [{
+        id: 'set-id-mock',
+        repetitions: 3,
+        series: 10,
+        weight: 10
+      }]
     }
 
     uuidService = new UUIDServiceMock()
@@ -37,9 +42,14 @@ describe('CreateWorkoutListUsecase', () => {
     const workoutRepositorySaveSpy = jest.spyOn(workoutRepository, 'save')
     const workout: Workout = {
       id: await uuidService.v4(),
-      title: 'Workout Title Test',
+      name: 'Workout Name Test',
       userId: 'user-id-mock',
-      exerciseIds: ['0001', '0002'],
+      sets: [{
+        id: 'set-id-mock',
+        repetitions: 3,
+        series: 10,
+        weight: 10
+      }],
       createdAt: new Date().toISOString()
     }
 

@@ -103,8 +103,8 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
-    'find-all-workouts': {
-      handler: './src/application/lambdas/workouts/find-all-workouts-lambda.handler',
+    'find-all-workouts-by-user-id': {
+      handler: './src/application/lambdas/workouts/find-all-workouts-by-user-id-lambda.handler',
       timeout: 30,
       events: [
         {
@@ -115,14 +115,14 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
-    'find-workout-by-id': {
-      handler: './src/application/lambdas/workouts/find-workout-by-id-lambda.handler',
+    'find-workout-by-id-and-user-id': {
+      handler: './src/application/lambdas/workouts/find-workout-by-id-and-user-id-lambda.handler',
       timeout: 30,
       events: [
         {
           http: {
             method: 'get',
-            path: 'workouts/{id}'
+            path: 'workouts/{id}/user/{userId}'
           }
         }
       ]
@@ -146,7 +146,7 @@ const serverlessConfiguration: AWS = {
         {
           http: {
             method: 'post',
-            path: 'workouts/{id}/exercise'
+            path: 'workouts/{id}/user/{userId}/exercise'
           }
         }
       ]

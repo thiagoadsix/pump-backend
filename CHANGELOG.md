@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.11](https://github.com/thiagoadsix/pump/compare/v1.1.10...v1.1.11) (2023-01-20)
+
+
+### Code Refactoring
+
+* **workout:** fix the tests imports and name of properties ([fde6215](https://github.com/thiagoadsix/pump/commit/fde6215b196f6c3eef0b7f26739a59fcc2b65cba))
+
+### [1.1.10](https://github.com/thiagoadsix/pump/compare/v1.1.9...v1.1.10) (2023-01-20)
+
+
+### Code Refactoring
+
+* **workout:** fix the fuction to add new exercise to woekout list ([c12eaf9](https://github.com/thiagoadsix/pump/commit/c12eaf908c29af33e65929abb829de2ce103aff4))
+
+### [1.1.9](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.9) (2023-01-20)
+
+
+### Others
+
+* **standard-version:** add custom types to standard-version ([08cb0ab](https://github.com/thiagoadsix/pump/commit/08cb0ab2d3462efeaea1b0684e253ff3cd021629))
+
+
+### Code Refactoring
+
+* **workouts:** update the workout entity and CreateWorkoutListUsecase ([0770ce6](https://github.com/thiagoadsix/pump/commit/0770ce6929e78e1c04f491919bee3263eec620f4))
+* **workout:** update the AddExerciseToWorkoutListUsecase ([67ffed6](https://github.com/thiagoadsix/pump/commit/67ffed6525a44c12a2937a929543197f6b822af6))
+* **workout:** update the FindWorkoutByIdAndUserIdUsecase ([38cb66b](https://github.com/thiagoadsix/pump/commit/38cb66b73f2935472fd87f7a74a2f7ecfd5a888e))
+* **workout:** update the FindWorkoutByUserIdUsecase ([30ecdec](https://github.com/thiagoadsix/pump/commit/30ecdec641e633d734cc10d3ec13979125d29e0b))
+
 ### [1.1.8](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.1.8) (2023-01-19)
 
 

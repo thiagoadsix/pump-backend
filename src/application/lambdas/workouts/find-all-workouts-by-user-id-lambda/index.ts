@@ -1,9 +1,9 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-import { makeFindAllWorkoutsUsecaseFactory } from '../../../factories/workouts/find-all-workouts-usecase-factory'
+import { makeFindAllWorkoutsByUserIdUsecaseFactory } from '../../../factories/workouts/find-all-workouts-by-user-id-usecase-factory'
 
 export async function handler (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
   const userId = event.pathParameters?.userId as string
-  const usecase = makeFindAllWorkoutsUsecaseFactory()
+  const usecase = makeFindAllWorkoutsByUserIdUsecaseFactory()
   const result = await usecase.execute(userId)
 
   return {

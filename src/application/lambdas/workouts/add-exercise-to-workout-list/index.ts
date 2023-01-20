@@ -3,9 +3,10 @@ import { makeAddExerciseToWorkoutListUsecaseFactory } from '../../../factories/w
 
 export async function handler (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
   const id = event.pathParameters?.id as string
-  const { exerciseIds } = JSON.parse(event.body as any)
+  const userId = event.pathParameters?.userId as string
+  const body = JSON.parse(event.body as any)
   const usecase = makeAddExerciseToWorkoutListUsecaseFactory()
-  await usecase.execute(id, exerciseIds)
+  await usecase.execute({ id, userId, ...body })
 
   return {
     statusCode: 201,

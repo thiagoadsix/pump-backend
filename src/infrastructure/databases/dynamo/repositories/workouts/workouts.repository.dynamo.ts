@@ -7,27 +7,23 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     this.client = client
   }
 
-  async addExercise (id: string, ids: string[]): Promise<void> {
-    const workout = await this.findById(id)
-
-    if (workout == null) {
-      return
+  async addExercise (input: Workout): Promise<void> {
+    const params: AWS.DynamoDB.DocumentClient.UpdateItemInput = {
+      TableName: String(process.env.WORKOUTS_TABLE_NAME),
+      Key: { id: input.id, userId: input.userId },
+      UpdateExpression: 'set #sets = list_append(if_not_exists(#sets, :empty_list), :sets), updatedAt = :updatedAt',
+      ExpressionAttributeNames: {
+        '#sets': 'sets'
+      },
+      ExpressionAttributeValues: {
+        ':sets': input.sets,
+        ':empty_list': [],
+        ':updatedAt': input.updatedAt
+      },
+      ReturnValues: 'UPDATED_NEW'
     }
 
-    if (workout.exerciseIds == null) {
-      workout.exerciseIds = []
-    }
-
-    ids.forEach(exerciseId => {
-      if (workout.exerciseIds != null) {
-        if (!workout.exerciseIds.includes(exerciseId)) {
-          workout.exerciseIds.push(exerciseId)
-        }
-      }
-    })
-
-    workout.updatedAt = new Date().toISOString()
-    await this.save(workout)
+    await this.client.update(params)
   }
 
   async delete (id: string, userId: string): Promise<void> {
@@ -37,24 +33,19 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     })
   }
 
-  async findById (id: string): Promise<Workout | null> {
-    const result = await this.client.query({
+  async findByIdAndUserId (id: string, userId: string): Promise<Workout | null> {
+    const params = {
       TableName: String(process.env.WORKOUTS_TABLE_NAME),
-      KeyConditionExpression: '#id = :id',
-      ExpressionAttributeNames: {
-        '#id': 'id'
-      },
-      ExpressionAttributeValues: {
-        ':id': id
-      },
-      Limit: 1
-    }).then(item => item.Items?.shift())
-
-    if (result == null) {
-      return null
+      Key: { id, userId }
     }
 
-    return this.fromDynamoDBItem(result)
+    const result = await this.client.get(params)
+
+    if (result.Item != null) {
+      return this.fromDynamoDBItem(result.Item)
+    }
+
+    return null
   }
 
   async findAll (userId: string): Promise<Workout[]> {
@@ -81,9 +72,9 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     return {
       id: item.id,
       userId: item.userId,
-      title: item.title,
+      name: item.name,
+      sets: item.sets,
       createdAt: item.createdAt,
-      exerciseIds: item.exerciseIds,
       updatedAt: item?.updatedAt
     }
   }

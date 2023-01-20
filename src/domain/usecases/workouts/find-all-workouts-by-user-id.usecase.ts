@@ -3,7 +3,7 @@ import { WorkoutRepository } from '../../protocols/repositories/workout.reposito
 import { Workout } from '../../entities/workout'
 import { Exercise } from '../../entities/exercise'
 
-export class FindAllWorkoutsUsecase {
+export class FindAllWorkoutsByUserIdUsecase {
   constructor (
     private readonly workoutRepository: WorkoutRepository,
     private readonly exerciseRepository: ExerciseRepository
@@ -12,22 +12,21 @@ export class FindAllWorkoutsUsecase {
     this.exerciseRepository = exerciseRepository
   }
 
-  async execute (userId: string): Promise<FindAllWorkoutsUsecase.Output> {
+  async execute (userId: string): Promise<FindAllWorkoutsByUserIdUsecase.Output> {
     const workouts = await this.workoutRepository.findAll(userId)
-    const workoutsWithExercises = await Promise.all(workouts.map(async workout => {
-      if (workout.exerciseIds != null) {
-        const exercises = await this.exerciseRepository.findByIds(workout.exerciseIds)
-        return { ...workout, exercises }
+    const exerciseIds = workouts.map((workout: Workout) => workout.sets.map(set => set.id)).flatMap(id => id)
+    const exercises = await this.exerciseRepository.findByIds(exerciseIds)
+
+    return workouts.map(workout => {
+      return {
+        ...workout,
+        exercises
       }
-
-      return []
-    }))
-
-    return workoutsWithExercises
+    })
   }
 }
 
-export namespace FindAllWorkoutsUsecase {
+export namespace FindAllWorkoutsByUserIdUsecase {
   interface WorkoutWithExercises extends Workout {
     exercises: Exercise[]
   }
