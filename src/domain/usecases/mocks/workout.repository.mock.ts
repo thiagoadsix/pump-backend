@@ -2,8 +2,8 @@ import { Workout } from '../../entities/workout'
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 
 export class WorkoutRepositoryMock implements WorkoutRepository {
-  async addExercise (id: string, exerciseIds: string[]): Promise<void> {
-    console.log(`Adding an exercise to workout (${JSON.stringify(id)}) list: ${JSON.stringify(exerciseIds)}`)
+  async addExercise (input: Workout): Promise<void> {
+    console.log(`Adding an exercise to workout (${JSON.stringify(input)}).`)
   }
 
   async save (input: Workout): Promise<void> {

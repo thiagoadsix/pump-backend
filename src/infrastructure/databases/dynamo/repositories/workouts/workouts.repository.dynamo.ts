@@ -7,27 +7,22 @@ export class WorkoutsRepositoryDynamo implements WorkoutRepository {
     this.client = client
   }
 
-  async addExercise (id: string, ids: string[]): Promise<void> {
-    const workout = await this.findById(id)
-
-    if (workout == null) {
-      return
+  async addExercise (input: Workout): Promise<void> {
+    const params: AWS.DynamoDB.DocumentClient.UpdateItemInput = {
+      TableName: String(process.env.WORKOUTS_TABLE_NAME),
+      Key: { id: input.id, userId: input.userId },
+      UpdateExpression: 'SET #sets = list_append(if_not_exists(#sets, :empty_list), :sets), updatedAt = :updatedAt',
+      ExpressionAttributeNames: {
+        '#sets': 'sets'
+      },
+      ExpressionAttributeValues: {
+        ':sets': input.sets,
+        ':empty_list': [],
+        ':updatedAt': input.updatedAt
+      },
+      ReturnValues: 'ALL_NEW'
     }
-
-    if (workout.exerciseIds == null) {
-      workout.exerciseIds = []
-    }
-
-    ids.forEach(exerciseId => {
-      if (workout.exerciseIds != null) {
-        if (!workout.exerciseIds.includes(exerciseId)) {
-          workout.exerciseIds.push(exerciseId)
-        }
-      }
-    })
-
-    workout.updatedAt = new Date().toISOString()
-    await this.save(workout)
+    await this.client.update(params)
   }
 
   async delete (id: string, userId: string): Promise<void> {

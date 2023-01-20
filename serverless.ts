@@ -146,7 +146,7 @@ const serverlessConfiguration: AWS = {
         {
           http: {
             method: 'post',
-            path: 'workouts/{id}/exercise'
+            path: 'workouts/{id}/user/{userId}/exercise'
           }
         }
       ]

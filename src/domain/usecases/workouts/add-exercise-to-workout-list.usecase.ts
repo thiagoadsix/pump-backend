@@ -1,4 +1,5 @@
-import { ExerciseIdsNotDefinedException } from '../../exceptions/workouts/exercise-ids-not-defined.exception'
+import { Sets } from '@domain/entities/workout'
+import { WorkoutNotFoundByIdAndUserIdException } from '@domain/exceptions/workouts/workout-not-found-by-id-and-user-id.exceptions'
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 
 export class AddExerciseToWorkoutListUsecase {
@@ -8,11 +9,21 @@ export class AddExerciseToWorkoutListUsecase {
     this.workoutRepository = workoutRepository
   }
 
-  async execute (id: string, exerciseIds: string[]): Promise<void> {
-    if (exerciseIds === undefined || exerciseIds == null || exerciseIds.length === 0) {
-      throw new ExerciseIdsNotDefinedException(exerciseIds)
+  async execute (input: AddExerciseToWorkoutListUsecase.Input): Promise<void> {
+    const workout = await this.workoutRepository.findById(input.id, input.userId)
+
+    if (workout == null) {
+      throw new WorkoutNotFoundByIdAndUserIdException(input.id, input.userId)
     }
 
-    await this.workoutRepository.addExercise(id, exerciseIds)
+    await this.workoutRepository.addExercise({ ...workout, updatedAt: new Date().toISOString() })
+  }
+}
+
+export namespace AddExerciseToWorkoutListUsecase {
+  export interface Input {
+    id: string
+    userId: string
+    sets: Sets[]
   }
 }

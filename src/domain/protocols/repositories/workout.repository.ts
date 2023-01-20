@@ -1,9 +1,18 @@
-import { Workout } from '../../entities/workout'
+import { Sets, Workout } from '../../entities/workout'
+
+export namespace WorkoutRepository {
+  export interface AddExerciseInput {
+    id: string
+    userId: string
+    sets: Sets[]
+    updatedAt: string
+  }
+}
 
 export interface WorkoutRepository {
-  addExercise: (id: string, exerciseIds: string[]) => Promise<void>
+  addExercise: (input: Workout) => Promise<void>
   save: (input: Workout) => Promise<void>
   findAll: (userId: string) => Promise<Workout[] | []>
-  findById: (id: string) => Promise<Workout | null>
+  findById: (id: string, userId: string) => Promise<Workout | null>
   delete: (id: string, userId: string) => Promise<void>
 }
