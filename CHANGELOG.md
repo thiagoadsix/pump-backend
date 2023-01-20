@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.11](https://github.com/thiagoadsix/pump/compare/v1.1.10...v1.1.11) (2023-01-20)
+
+
+### Code Refactoring
+
+* **workout:** fix the tests imports and name of properties ([fde6215](https://github.com/thiagoadsix/pump/commit/fde6215b196f6c3eef0b7f26739a59fcc2b65cba))
+
 ### [1.1.10](https://github.com/thiagoadsix/pump/compare/v1.1.9...v1.1.10) (2023-01-20)
 
 

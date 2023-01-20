@@ -1,6 +1,6 @@
 {
   "name": "pump",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "Pump backend",
   "scripts": {
     "prettier": "prettier 'src/**/*.ts'",
