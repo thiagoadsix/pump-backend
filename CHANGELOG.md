@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.2.0) (2023-01-21)
+
+
+### Features
+
+* **doc:** add documentation with swagger ([45a08c8](https://github.com/thiagoadsix/pump/commit/45a08c8e12a4f66ca89d73d27608179ea5a1977f))
+
+
+### Others
+
+* **package-lock:** update the package-lock ([048336b](https://github.com/thiagoadsix/pump/commit/048336bc7d22d53aa47b4299402b4436a31a89d4))
+* **package:** update the version of node ([6f1ec99](https://github.com/thiagoadsix/pump/commit/6f1ec99ef39cef5ef56a35ad0b8ed7b03aa4c284))
+* **standard-version:** add custom types to standard-version ([08cb0ab](https://github.com/thiagoadsix/pump/commit/08cb0ab2d3462efeaea1b0684e253ff3cd021629))
+
 ### [1.1.11](https://github.com/thiagoadsix/pump/compare/v1.1.10...v1.1.11) (2023-01-20)
 
 
