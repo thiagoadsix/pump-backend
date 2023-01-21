@@ -15,7 +15,7 @@
     "release": "standard-version"
   },
   "engines": {
-    "node": ">=16x"
+    "node": "16.15.1"
   },
   "dependencies": {
     "@middy/core": "^3.4.0",
