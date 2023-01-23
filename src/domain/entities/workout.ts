@@ -3,13 +3,25 @@ export class Sets {
   series: number
   repetitions: number
   weight: number
+
+  constructor (
+    id: string,
+    series: number,
+    repetitions: number,
+    weight: number
+  ) {
+    this.id = id
+    this.series = series
+    this.repetitions = repetitions
+    this.weight = weight
+  }
 }
 
 export class Workout {
   id: string
   userId: string
   name: string
-  sets: Sets[]
+  sets: Sets[] = []
   createdAt: string
   updatedAt?: string
 

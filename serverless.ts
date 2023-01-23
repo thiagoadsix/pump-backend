@@ -134,7 +134,7 @@ const serverlessConfiguration: AWS = {
         {
           http: {
             method: 'delete',
-            path: 'user/{userId}/workouts/{id}/'
+            path: 'workouts/{id}/user/{userId}'
           }
         }
       ]

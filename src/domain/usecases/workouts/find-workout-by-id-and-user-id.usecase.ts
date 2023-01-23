@@ -1,7 +1,6 @@
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 import { Workout } from '../../entities/workout'
-import { Exercise } from '../../entities/exercise'
 import { WorkoutNotFoundByIdAndUserIdException } from '../../exceptions/workouts/workout-not-found-by-id-and-user-id.exceptions'
 
 export class FindWorkoutByIdAndUserIdUsecase {
@@ -22,11 +21,24 @@ export class FindWorkoutByIdAndUserIdUsecase {
 
     const exerciseIds = workout.sets.map(set => set.id)
 
+    if (exerciseIds.length === 0) {
+      return {
+        ...workout
+      }
+    }
+
     const exercises = await this.exerciseRepository.findByIds(exerciseIds)
+
+    const set = workout.sets.map(set => {
+      return {
+        ...set,
+        exercise: exercises.find(exercise => exercise.id === set.id)
+      }
+    })
 
     return {
       ...workout,
-      exercises
+      sets: set
     }
   }
 }
@@ -37,9 +49,5 @@ export namespace FindWorkoutByIdAndUserIdUsecase {
     userId: string
   }
 
-  interface WorkoutWithExercise extends Workout {
-    exercises: Exercise[]
-  }
-
-  export type Output = WorkoutWithExercise
+  export type Output = Workout
 }

@@ -13,7 +13,8 @@ export class CreateWorkoutListUsecase {
       id: await this.uuidService.v4(),
       userId: input.userId,
       name: input.name,
-      sets: input.sets,
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      sets: input.sets || [],
       createdAt: new Date().toISOString()
     }
 
