@@ -1,6 +1,7 @@
 import { ExerciseRepository } from '../../protocols/repositories/exercise.repository'
 import { WorkoutRepository } from '../../protocols/repositories/workout.repository'
 import { Workout } from '../../entities/workout'
+import { Exercise } from '@domain/entities/exercise'
 
 export class FindAllWorkoutsByUserIdUsecase {
   constructor (
@@ -19,7 +20,12 @@ export class FindAllWorkoutsByUserIdUsecase {
     }
 
     const exerciseIds = workouts.map((workout: Workout) => workout.sets.map(set => set.id)).flatMap(id => id)
-    const exercises = await this.exerciseRepository.findByIds(exerciseIds)
+
+    let exercises: Exercise[] = []
+
+    if (exerciseIds.length >= 1) {
+      exercises = await this.exerciseRepository.findByIds(exerciseIds)
+    }
 
     const workoutsWithExercises = workouts.map(workout => {
       const setsWithExercises = workout.sets.map(set => {
