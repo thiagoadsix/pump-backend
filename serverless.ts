@@ -3,7 +3,7 @@ import type { AWS } from '@serverless/typescript'
 const serverlessConfiguration: AWS = {
   service: 'pump',
   frameworkVersion: '3',
-  plugins: ['serverless-dotenv-plugin', 'serverless-esbuild', 'serverless-offline'],
+  plugins: ['serverless-auto-swagger', 'serverless-dotenv-plugin', 'serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
@@ -175,6 +175,13 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10
+    },
+    autoswagger: {
+      title: 'Pump API',
+      apiType: 'http',
+      generateSwaggerOnDeploy: true,
+      host: 'localhost',
+      typefiles: ['./swagger/swagger-json.d.ts', './swagger/swagger-html.d.ts', './swagger/functions.d.ts']
     }
   }
 }
