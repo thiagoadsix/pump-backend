@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.2.1) (2023-01-23)
+
+
+### Code Refactoring
+
+* **workout:** add the exercise to workout output usecases ([8bbb9dd](https://github.com/thiagoadsix/pump/commit/8bbb9ddb9e5d014fe9dadd18b4fc65209c2bda74))
+
+
+### Others
+
+* **merge:** just to merge origin to local ([ee1a9e5](https://github.com/thiagoadsix/pump/commit/ee1a9e5df57d36a804b02db6d1f4789bc4a4e4e1))
+* **standard-version:** add custom types to standard-version ([08cb0ab](https://github.com/thiagoadsix/pump/commit/08cb0ab2d3462efeaea1b0684e253ff3cd021629))
+
 ## [1.2.0](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.2.0) (2023-01-21)
 
 
