@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/thiagoadsix/pump/compare/v1.2.1...v1.2.2) (2023-01-23)
+
+
+### Bug Fixes
+
+* **workout:** when the exerciseIds is empty, do not make query by ids on exercise repository ([d8c5327](https://github.com/thiagoadsix/pump/commit/d8c532730867399c9e5351f5b7102e600d6e95fd))
+
 ### [1.2.1](https://github.com/thiagoadsix/pump/compare/v1.1.1...v1.2.1) (2023-01-23)
 
 
