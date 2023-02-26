@@ -140,7 +140,7 @@ const serverlessConfiguration: AWS = {
       ]
     },
     'add-exercise-to-workout-list': {
-      handler: './src/application/lambdas/workouts/add-exercise-to-workout-list.handler',
+      handler: './src/application/lambdas/workouts/add-exercise-to-workout-list-lambda.handler',
       timeout: 30,
       events: [
         {
@@ -159,6 +159,18 @@ const serverlessConfiguration: AWS = {
           http: {
             method: 'post',
             path: 'robot/populate-table'
+          }
+        }
+      ]
+    },
+    'create-user': {
+      handler: './src/application/lambdas/users/create-user-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'post',
+            path: 'users'
           }
         }
       ]
