@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/thiagoadsix/pump-backend/compare/v1.3.0...v1.3.1) (2023-03-19)
+
+
+### Code Refactoring
+
+* **envs:** update the name of the envs ([10c93a9](https://github.com/thiagoadsix/pump-backend/commit/10c93a980e7c9e8d29fa9e0af66615a3ecd6dae7))
+
 ## [1.3.0](https://github.com/thiagoadsix/pump-backend/compare/v1.2.2...v1.3.0) (2023-03-19)
 
 
