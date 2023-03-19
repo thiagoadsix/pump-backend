@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/thiagoadsix/pump-backend/compare/v1.2.2...v1.3.0) (2023-03-19)
+
+
+### Features
+
+* **authorization:** implements the service of authorization and update the robots ([1891935](https://github.com/thiagoadsix/pump-backend/commit/189193587d9a42687a525e98bcc2badd3b01a680))
+* **env:** add env to firabase ([5821ca7](https://github.com/thiagoadsix/pump-backend/commit/5821ca7a3bf5ffbc5eece3fb3d1d8258a3c41467))
+* **pipeline:** add gitchub actions to implements the ci/cd ([e31f03a](https://github.com/thiagoadsix/pump-backend/commit/e31f03a7d11a83575675db6633681a31c874d03d))
+* **user:** create usecase responsible to create a user on firebase ([041164a](https://github.com/thiagoadsix/pump-backend/commit/041164a6fc7db775cfc038d95f82f20dcafdbe95))
+
+
+### Code Refactoring
+
+* **credentials:** update how to get the credentials to AWS ([146d3f7](https://github.com/thiagoadsix/pump-backend/commit/146d3f7352e12471471fb4318c6e797e9941bed9))
+
 ### [1.2.2](https://github.com/thiagoadsix/pump/compare/v1.2.1...v1.2.2) (2023-01-23)
 
 
