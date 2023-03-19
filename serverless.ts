@@ -18,11 +18,11 @@ const serverlessConfiguration: AWS = {
       WORKOUTS_TABLE_NAME: 'Workouts',
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      AWS_ACCESS_KEY_ID: '${.env:AWS_ACCESS_KEY_ID}',
-      AWS_SECRET_ACCESS_KEY: '${.env:AWS_SECRET_ACCESS_KEY}',
+      AMAZON_ACCESS_KEY_ID: '${.env:AMAZON_ACCESS_KEY_ID}',
+      AMAZON_SECRET_ACCESS_KEY: '${.env:AMAZON_SECRET_ACCESS_KEY}',
       STAGE: '${self:provider.stage}',
       EXERCISE_BASE_URL: '${.env:EXERCISE_BASE_URL}',
-      AWS_CLOUD_FRONT_BASE_URL: '${.env:AWS_CLOUD_FRONT_BASE_URL}',
+      AMAZON_CLOUD_FRONT_BASE_URL: '${.env:AMAZON_CLOUD_FRONT_BASE_URL}',
       EXERCISE_API_KEY: '${.env:EXERCISE_API_KEY}',
       EXERCISE_CLOUD_FRONT_BASE_URL: '${.env:EXERCISE_CLOUD_FRONT_BASE_URL}'
     }

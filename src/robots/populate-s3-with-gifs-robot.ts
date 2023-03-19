@@ -10,8 +10,8 @@ export class PopulateS3WithGifsRobot {
   constructor () {
     this.s3 = new S3({
       credentials: {
-        accessKeyId: String(process.env.AWS_ACCESS_KEY_ID),
-        secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY)
+        accessKeyId: String(process.env.AMAZON_ACCESS_KEY_ID),
+        secretAccessKey: String(process.env.AMAZON_SECRET_ACCESS_KEY)
       },
       s3ForcePathStyle: true
     })

@@ -31,8 +31,8 @@ export class PopulateTableRobot {
 
     this.s3 = new S3({
       credentials: {
-        accessKeyId: String(process.env.AWS_ACCESS_KEY_ID),
-        secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY)
+        accessKeyId: String(process.env.AMAZON_ACCESS_KEY_ID),
+        secretAccessKey: String(process.env.AMAZON_SECRET_ACCESS_KEY)
       },
       s3ForcePathStyle: true
     })
@@ -40,7 +40,7 @@ export class PopulateTableRobot {
 
   async execute (): Promise<void> {
     const exercises: AxiosResponse<Array<{ id: string, target: string, name: string, gifUrl: string, equipment: string, bodyPart: string }>, any> = await this.axiosGateway.get('exercises')
-    const cloudFrontUrl = `${process.env.AWS_CLOUD_FRONT_BASE_URL}`
+    const cloudFrontUrl = `${process.env.AMAZON_CLOUD_FRONT_BASE_URL}`
 
     const exercisesWithNewUrl = exercises.data.map(exercise => ({
       ...exercise,

@@ -24,9 +24,9 @@ jobs:
     - name: Deploy to Production
       run: npx serverless deploy --stage prod
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_CLOUD_FRONT_BASE_URL: ${{ secrets.AWS_CLOUD_FRONT_BASE_URL }}
+        AMAZON_ACCESS_KEY_ID: ${{ secrets.AMAZON_ACCESS_KEY_ID }}
+        AMAZON_SECRET_ACCESS_KEY: ${{ secrets.AMAZON_SECRET_ACCESS_KEY }}
+        AMAZON_CLOUD_FRONT_BASE_URL: ${{ secrets.AMAZON_CLOUD_FRONT_BASE_URL }}
         EXERCISE_BASE_URL: ${{ secrets.EXERCISE_BASE_URL }}
         EXERCISE_API_KEY: ${{ secrets.EXERCISE_API_KEY }}
         EXERCISE_CLOUD_FRONT_BASE_URL: ${{ secrets.EXERCISE_CLOUD_FRONT_BASE_URL }}

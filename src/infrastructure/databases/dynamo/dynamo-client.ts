@@ -16,8 +16,8 @@ export class DynamoClient {
       secretAccessKey = 'fakeSecretAccessKey'
     } else if (stage === 'prod') {
       // Use prod DynamoDB endpoint and credentials
-      accessKeyId = process.env.AWS_ACCESS_KEY_ID
-      secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+      accessKeyId = process.env.AMAZON_ACCESS_KEY_ID
+      secretAccessKey = process.env.AMAZON_SECRET_ACCESS_KEY
     }
 
     this.client = new AWS.DynamoDB.DocumentClient({
