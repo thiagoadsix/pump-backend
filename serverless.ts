@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import type { AWS } from '@serverless/typescript'
 
 const serverlessConfiguration: AWS = {
@@ -7,8 +8,7 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
-    // eslint-disable-next-line no-template-curly-in-string
-    stage: "${opt:stage,'local'}",
+    stage: '${opt:stage}',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true
@@ -151,6 +151,30 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
+    'sign-in': {
+      handler: './src/application/lambdas/users/sign-in-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'post',
+            path: 'users/auth/sign-in'
+          }
+        }
+      ]
+    },
+    'sign-up': {
+      handler: './src/application/lambdas/users/sign-up-lambda.handler',
+      timeout: 30,
+      events: [
+        {
+          http: {
+            method: 'post',
+            path: 'users/auth/sign-up'
+          }
+        }
+      ]
+    },
     'populate-table-robot': {
       handler: './src/application/lambdas/robots/populate-table-robot.handler',
       timeout: 900,
@@ -163,14 +187,14 @@ const serverlessConfiguration: AWS = {
         }
       ]
     },
-    'create-user': {
-      handler: './src/application/lambdas/users/create-user-lambda.handler',
-      timeout: 30,
+    'populate-s3-with-gifs-robot': {
+      handler: './src/application/lambdas/robots/populate-s3-with-gifs-robot.handler',
+      timeout: 900,
       events: [
         {
           http: {
             method: 'post',
-            path: 'users'
+            path: 'robot/populate-s3-with-gifs'
           }
         }
       ]
@@ -194,6 +218,106 @@ const serverlessConfiguration: AWS = {
       generateSwaggerOnDeploy: true,
       host: 'localhost',
       typefiles: ['./swagger/swagger-json.d.ts', './swagger/swagger-html.d.ts', './swagger/functions.d.ts']
+    }
+  },
+  resources: {
+    Resources: {
+      WorkoutsTable: {
+        Type: 'AWS::DynamoDB::Table',
+        Properties: {
+          TableName: 'Workouts',
+          AttributeDefinitions: [
+            {
+              AttributeName: 'id',
+              AttributeType: 'S'
+            },
+            {
+              AttributeName: 'userId',
+              AttributeType: 'S'
+            }
+          ],
+          KeySchema: [
+            {
+              AttributeName: 'id',
+              KeyType: 'HASH'
+            },
+            {
+              AttributeName: 'userId',
+              KeyType: 'RANGE'
+            }
+          ],
+          ProvisionedThroughput: {
+            ReadCapacityUnits: 10,
+            WriteCapacityUnits: 5
+          }
+        }
+      },
+      ExercisesTable: {
+        Type: 'AWS::DynamoDB::Table',
+        Properties: {
+          TableName: 'Exercises',
+          AttributeDefinitions: [
+            { AttributeName: 'id', AttributeType: 'S' },
+            { AttributeName: 'target', AttributeType: 'S' },
+            { AttributeName: 'equipment', AttributeType: 'S' },
+            { AttributeName: 'bodyPart', AttributeType: 'S' }
+          ],
+          KeySchema: [
+            {
+              AttributeName: 'id',
+              KeyType: 'HASH'
+            }
+          ],
+          ProvisionedThroughput: {
+            ReadCapacityUnits: 10,
+            WriteCapacityUnits: 5
+          },
+          GlobalSecondaryIndexes: [
+            {
+              IndexName: 'target-index',
+              KeySchema: [
+                { AttributeName: 'target', KeyType: 'HASH' }
+              ],
+              Projection: {
+                ProjectionType: 'INCLUDE',
+                NonKeyAttributes: ['id']
+              },
+              ProvisionedThroughput: {
+                ReadCapacityUnits: 10,
+                WriteCapacityUnits: 5
+              }
+            },
+            {
+              IndexName: 'equipment-index',
+              KeySchema: [
+                { AttributeName: 'equipment', KeyType: 'HASH' }
+              ],
+              Projection: {
+                ProjectionType: 'INCLUDE',
+                NonKeyAttributes: ['id']
+              },
+              ProvisionedThroughput: {
+                ReadCapacityUnits: 10,
+                WriteCapacityUnits: 5
+              }
+            },
+            {
+              IndexName: 'bodyPart-index',
+              KeySchema: [
+                { AttributeName: 'bodyPart', KeyType: 'HASH' }
+              ],
+              Projection: {
+                ProjectionType: 'INCLUDE',
+                NonKeyAttributes: ['id']
+              },
+              ProvisionedThroughput: {
+                ReadCapacityUnits: 10,
+                WriteCapacityUnits: 5
+              }
+            }
+          ]
+        }
+      }
     }
   }
 }

@@ -11,6 +11,8 @@ module.exports = {
     project: ['./tsconfig.json']
   },
   rules: {
-    '@typescript-eslint/no-namespace': 'off'
+    '@typescript-eslint/no-namespace': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off'
   }
 }

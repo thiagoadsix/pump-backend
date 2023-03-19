@@ -8,9 +8,9 @@
   "paths": {
     "/exercises": {
       "get": {
-        "summary": "find-all-exercises",
+        "summary": "find-all-exercises-${self:provider.stage}",
         "description": "",
-        "operationId": "find-all-exercises.get.exercises",
+        "operationId": "find-all-exercises-${self:provider.stage}.get.exercises",
         "consumes": [
           "application/json"
         ],
@@ -268,6 +268,44 @@
         }
       }
     },
+    "/users/auth/sign-in": {
+      "post": {
+        "summary": "sign-in",
+        "description": "",
+        "operationId": "sign-in.post.users/auth/sign-in",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    },
+    "/users/auth/sign-up": {
+      "post": {
+        "summary": "sign-up",
+        "description": "",
+        "operationId": "sign-up.post.users/auth/sign-up",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    },
     "/robot/populate-table": {
       "post": {
         "summary": "populate-table-robot",
@@ -287,11 +325,11 @@
         }
       }
     },
-    "/users": {
+    "/robot/populate-s3-with-gifs": {
       "post": {
-        "summary": "create-user",
+        "summary": "populate-s3-with-gifs-robot",
         "description": "",
-        "operationId": "create-user.post.users",
+        "operationId": "populate-s3-with-gifs-robot.post.robot/populate-s3-with-gifs",
         "consumes": [
           "application/json"
         ],

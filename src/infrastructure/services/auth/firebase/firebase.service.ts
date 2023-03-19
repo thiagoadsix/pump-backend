@@ -19,9 +19,9 @@ export class FirebaseService implements AuthService {
     return user
   }
 
-  async signIn (input: AuthService.Input): Promise<any> {
-    const user = await signInWithEmailAndPassword(this.auth, input.email, input.password)
-    console.log(JSON.stringify(user))
+  async signIn (input: AuthService.SignInInput): Promise<User> {
+    const result = await signInWithEmailAndPassword(this.auth, input.email, input.password)
+    const user = new User(result.user.uid, result.user.displayName!, input.email, result.user.emailVerified, result.user.metadata.creationTime ?? '', result.user.metadata.creationTime ?? '')
     return user
   }
 
