@@ -40,7 +40,7 @@ export class PopulateTableRobot {
 
   async execute (): Promise<void> {
     const exercises: AxiosResponse<Array<{ id: string, target: string, name: string, gifUrl: string, equipment: string, bodyPart: string }>, any> = await this.axiosGateway.get('exercises')
-    const cloudFrontUrl = `${process.env.CLOUD_FRONT_BASE_URL}`
+    const cloudFrontUrl = `${process.env.AWS_CLOUD_FRONT_BASE_URL}`
 
     const exercisesWithNewUrl = exercises.data.map(exercise => ({
       ...exercise,

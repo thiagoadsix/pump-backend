@@ -18,16 +18,13 @@ const serverlessConfiguration: AWS = {
       WORKOUTS_TABLE_NAME: 'Workouts',
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      // eslint-disable-next-line no-template-curly-in-string
       AWS_ACCESS_KEY_ID: '${.env:AWS_ACCESS_KEY_ID}',
-      // eslint-disable-next-line no-template-curly-in-string
       AWS_SECRET_ACCESS_KEY: '${.env:AWS_SECRET_ACCESS_KEY}',
-      // eslint-disable-next-line no-template-curly-in-string
       STAGE: '${self:provider.stage}',
-      // eslint-disable-next-line no-template-curly-in-string
       EXERCISE_BASE_URL: '${.env:EXERCISE_BASE_URL}',
-      // eslint-disable-next-line no-template-curly-in-string
-      CLOUD_FRONT_BASE_URL: '${.env:CLOUD_FRONT_BASE_URL}'
+      AWS_CLOUD_FRONT_BASE_URL: '${.env:AWS_CLOUD_FRONT_BASE_URL}',
+      EXERCISE_API_KEY: '${.env:EXERCISE_API_KEY}',
+      EXERCISE_CLOUD_FRONT_BASE_URL: '${.env:EXERCISE_CLOUD_FRONT_BASE_URL}'
     }
   },
   functions: {
