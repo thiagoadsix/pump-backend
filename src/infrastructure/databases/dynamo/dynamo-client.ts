@@ -1,6 +1,6 @@
 import * as AWS from 'aws-sdk'
 
-export type DynamoClientStageType = 'dev' | 'prod' | 'local'
+export type DynamoClientStageType = 'prod' | 'local'
 
 export class DynamoClient {
   private readonly client: AWS.DynamoDB.DocumentClient
@@ -14,10 +14,6 @@ export class DynamoClient {
       endpoint = 'http://localhost:4566'
       accessKeyId = 'fakeAccessKeyId'
       secretAccessKey = 'fakeSecretAccessKey'
-    } else if (stage === 'dev') {
-      // Use dev DynamoDB endpoint and credentials
-      accessKeyId = process.env.AWS_ACCESS_KEY_ID
-      secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
     } else if (stage === 'prod') {
       // Use prod DynamoDB endpoint and credentials
       accessKeyId = process.env.AWS_ACCESS_KEY_ID
